@@ -11,8 +11,8 @@ CREATE TABLE `cnn`
 
 CREATE TABLE `train`
 (
-  `cnn_id` int,
-  `data_id` int,
+  `cnn_id` int NOT NULL,
+  `data_id` int NOT NULL,
   `epoch` int,
   `epochStart` timestamp,
   `loss` double,
@@ -23,8 +23,8 @@ CREATE TABLE `train`
 
 CREATE TABLE `test`
 (
-  `cnn_id` int,
-  `data_id` int,
+  `cnn_id` int NOT NULL,
+  `data_id` int NOT NULL,
   `testStart` timestamp,
   `loss` double,
   `acc` double
@@ -32,7 +32,7 @@ CREATE TABLE `test`
 
 CREATE TABLE `dataset`
 (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY NOT NULL,
   `name` varchar(150),
   `samples` int,
   `classes` int,
@@ -43,16 +43,16 @@ CREATE TABLE `dataset`
 
 CREATE TABLE `data`
 (
-  `dataset` int,
-  `file_path` varchar(150),
+  `dataset` int NOT NULL,
+  `file_path` varchar(150) NOT NULL,
   `fold` int,
   `class` int
 );
 
 CREATE TABLE `hyperParam`
 (
-  `cnn_id` int,
-  `layer` int,
+  `cnn_id` int NOT NULL,
+  `layer` int NOT NULL,
   `name` varchar(150),
   `init_value` double,
   `current_value` double,
@@ -61,8 +61,8 @@ CREATE TABLE `hyperParam`
 
 CREATE TABLE `layer`
 (
-  `cnn_id` int,
-  `depth` int,
+  `cnn_id` int NOT NULL,
+  `depth` int NOT NULL,
   `type` ENUM ('CONV_2D', 'DENSE', 'POOL'),
   `params` int,
   `kernel_x` int,
@@ -70,6 +70,14 @@ CREATE TABLE `layer`
   `stride_x` int,
   `stride_y` int
 );
+
+ALTER TABLE `layer` ADD PRIMARY KEY (`cnn_id`, `depth`);
+
+ALTER TABLE `hyperparam` ADD PRIMARY KEY (`cnn_id`, `layer`);
+
+ALTER TABLE `test` ADD PRIMARY KEY (`cnn_id`, `data_id`);
+
+ALTER TABLE `train` ADD PRIMARY KEY (`cnn_id`, `data_id`);
 
 ALTER TABLE `train` ADD FOREIGN KEY (`cnn_id`) REFERENCES `cnn` (`id`);
 
