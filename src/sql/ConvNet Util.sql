@@ -79,6 +79,8 @@ ALTER TABLE `test` ADD PRIMARY KEY (`cnn_id`, `data_id`);
 
 ALTER TABLE `train` ADD PRIMARY KEY (`cnn_id`, `data_id`);
 
+ALTER TABLE `data` ADD PRIMARY KEY (`dataset`, `file_path`);
+
 ALTER TABLE `train` ADD FOREIGN KEY (`cnn_id`) REFERENCES `cnn` (`id`);
 
 ALTER TABLE `train` ADD FOREIGN KEY (`data_id`) REFERENCES `dataset` (`id`);
