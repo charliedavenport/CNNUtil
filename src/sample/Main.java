@@ -31,6 +31,7 @@ public class Main extends Application {
                 System.out.print(meta.getColumnName(i) + "\t\t");
             }
             System.out.println();
+            rs.first();
             do {
                 for (int i = 1; i <= numCols; i++) {
                     System.out.print(rs.getString(i) + "\t\t");
