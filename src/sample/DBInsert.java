@@ -26,6 +26,9 @@ public class DBInsert {
     private static final String cnnName = "MNIST_CNN_01";
 
 
+    /* Check the class variables before uncommenting these functions and running.
+     * These methods will make updates to the DB, so be careful
+     */
     public static void main(String[] args) {
 
         connectToDB();
@@ -170,7 +173,7 @@ public class DBInsert {
      * @param csvPath - path to csv file
      * @param dataset - name of dataset used in training
      * @param modelName - name of CNN model, must match a record in cnn table
-     * @return
+     * @return true if successful, false otherwise.
      */
     private static boolean insertTrain(String csvPath, String dataset, String modelName) {
         final String SELECT_DATA_ID = "SELECT id FROM dataset WHERE name=?";

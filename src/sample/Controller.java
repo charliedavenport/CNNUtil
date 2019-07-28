@@ -1,23 +1,31 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class Controller implements Initializable {
+public class Controller {
 
     @FXML
-    private ComboBox<String> dbtypeCbx;
+    private ComboBox<String> modelComboBox;
 
-    private ObservableList<String> dbTypeList = FXCollections.observableArrayList("SQLite");
+    @FXML
+    private ListView modelDataListView;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        dbtypeCbx.setItems(dbTypeList);
+    public Controller() {
+
     }
+
+    @FXML
+    private void initialize() {
+        modelComboBox.getItems().setAll("MODEL 1", "MODEL 2");
+    }
+
+    @FXML
+    private void printOutput() {
+
+    }
+
+
+
 }
