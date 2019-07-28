@@ -1,18 +1,60 @@
 package sample;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
+/**
+ * Class containing static methods for querying the DataBase
+ * @author Charles Davenport
+ */
 public class TestQuery {
+
+    private static Connection conn;
+    private static String url = "jdbc:mysql://localhost:3306/cnn_util";
 
     private static final String cnnSelectQuery = "SELECT * FROM cnn";
 
+    /**
+     * @author Charles Davenport
+     * @return - List of names of all cnn's in DB
+     */
+    public static List<String> SelectCnnNames() {
+        final String query = "SELECT name FROM CNN";
+        List<String> names = new ArrayList<>();
+
+
+        return names;
+    }
+
+
     public static ResultSet selectCNN() {
         ResultSet rs = null;
-        Connection conn = null;
+        //Connection conn = null;
         String query = "SELECT * FROM cnn JOIN layer;";
-        String url = "jdbc:mysql://localhost:3306/cnn_util";
 
+
+        try {
+            connectToDB();
+
+            CallableStatement cStmt = conn.prepareCall(query);
+            boolean success = cStmt.execute();
+            System.out.println(success);
+            rs = cStmt.getResultSet();
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+
+        return rs;
+    }
+
+    /**
+     * Connect to mysql database.
+     * @author Charles Davenport
+     */
+    private static void connectToDB() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -22,19 +64,18 @@ public class TestQuery {
             prop.put("serverTimezone", "UTC");
             prop.put("allowMultiQueries", true);
             conn = DriverManager.getConnection(url, prop);
-
-            CallableStatement cStmt = conn.prepareCall(query);
-            boolean success = cStmt.execute();
-            System.out.println(success);
-            rs = cStmt.getResultSet();
-
-        } catch (ClassNotFoundException ex) {
-            System.out.println("ClassNotFoundException: " + ex.getMessage());
-        } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("Connected to DB: " + conn.getCatalog());
+        }
+        catch (ClassNotFoundException ex) {
+            System.out.println("DBInsert.connectToDB(): ClassNotFoundException: "
+                    + ex.getMessage());
+        }
+        catch (SQLException ex) {
+            System.out.println("DBInsert.connectToDB(): SQLException: "
+                    + ex.getMessage());
         }
 
-        return rs;
     }
+
 
 }
