@@ -203,7 +203,7 @@ public class DBInsert {
             dataset_id = rs.getInt(1);
 
             // open csv file containing training data
-            File tFile = 
+            File tFile = new File(csvPath);
 
 
 
