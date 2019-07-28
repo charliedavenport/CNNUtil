@@ -23,7 +23,21 @@ public class TestQuery {
     public static List<String> SelectCnnNames() {
         final String query = "SELECT name FROM CNN";
         List<String> names = new ArrayList<>();
+        try {
+            connectToDB();
 
+            CallableStatement stmt = conn.prepareCall(query);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            rs.first();
+            System.out.println(rs.getString(1));
+            do {
+                names.add(rs.getString(1));
+            } while (rs.next());
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
 
         return names;
     }
@@ -33,8 +47,6 @@ public class TestQuery {
         ResultSet rs = null;
         //Connection conn = null;
         String query = "SELECT * FROM cnn JOIN layer;";
-
-
         try {
             connectToDB();
 
