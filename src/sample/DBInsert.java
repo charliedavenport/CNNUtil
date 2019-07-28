@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import java.util.Scanner;
 
 /**
  * Class for inserting images, csv data into the mysql db
@@ -17,16 +20,63 @@ public class DBInsert {
     private static final String url = "jdbc:mysql://localhost:3306/cnn_util";
 
     private static final String imgDir = "D:\\Github\\ACM_ML\\Spring 2019\\MNIST_img";
+    private static final String classesFilePath = "D:\\Github\\ACM_ML\\Spring 2019\\MNIST_classes.csv";
     private static final String datasetName = "MNIST";
 
 
     public static void main(String[] args) {
 
         connectToDB();
-        boolean success = insertDataFromDir(imgDir, datasetName, 10);
-        System.out.println(success ? "Sucessfully inserted images into DB"
-                : "Failed to insert images to DB");
+        //boolean success = insertDataFromDir(imgDir, classesFilePath, datasetName, 10);
+        //System.out.println(success ? "Sucessfully inserted images into DB"
+        //        : "Failed to insert images to DB");
 
+        boolean success = updateDataClasses(classesFilePath, datasetName);
+        System.out.println(success ? "Sucessfully updated image classes in DB"
+                : "Failed to update image classes in DB");
+
+    }
+
+    /**
+     * I wrote this utility function, because I initially inserted all
+     * the images to the DB without setting the class properly. Now the records
+     * have to be updated ¯\_(ツ)_/¯
+     *
+     * @author Charles Davenport
+     * @param classFile - path to csv file
+     * @param dataset - dataset name
+     * @return true if successful, false otherwise
+     */
+    private static boolean updateDataClasses(String classFile, String dataset) {
+        final String UPDATE_CLASSES = "UPDATE data SET class=? WHERE dataset=1 AND id=?";
+
+        //List<Integer> classValues = new ArrayList<Integer>(70000);
+        File cFile = new File(classFile);
+        try {
+            Scanner scn = new Scanner(cFile);
+            while(scn.hasNextLine()) {
+                String line = scn.nextLine();
+                System.out.println(line);
+                String [] items = line.split(",");
+                int imgId = Integer.parseInt(items[0]);
+                int classNum = Integer.parseInt(items[1]);
+
+                PreparedStatement pstmt = conn.prepareStatement(UPDATE_CLASSES);
+                pstmt.setInt(1, classNum);
+                pstmt.setInt(2,imgId);
+                //System.out.println(pstmt.toString());
+                pstmt.executeUpdate();
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -39,7 +89,7 @@ public class DBInsert {
      * @param folds - how many folds to split data into
      * @return true if successful, false if not
      */
-    private static boolean insertDataFromDir(String dirPath, String dataset, int folds) {
+    private static boolean insertDataFromDir(String dirPath, String classFile, String dataset, int folds) {
         final String INSERT_QUERY = "INSERT INTO data VALUES (?, ?, ?, ?, ?, ?)";
         final String SELECT_DATA_ID = "SELECT id FROM dataset WHERE name=?";
 
@@ -60,21 +110,34 @@ public class DBInsert {
             System.out.println("Inserting into Dataset with id = "
                     + dataset_id);
 
+            // open file containing classes
+            File cFile = new File(classFile);
+            Scanner scn = new Scanner(cFile);
+            String line;
+            // open image directory file
             File dir = new File(dirPath);
             String [] dirContents = dir.list();
             // WARNING - this loop can take a long time to complete. Debug with smaller amt of images
-            for (int i=100; i<dirContents.length; i++) {
+            for (int i=0; i<dirContents.length; i++) {
                 //System.out.println(dirContents[i]);
                 String img_path = dirPath + "\\" + dirContents[i];
+                // open image file - convert to binary stream
                 File img_file = new File(img_path);
                 FileInputStream inputs = new FileInputStream(img_file);
+                // get next line from class file
+                int classNum;
+                if (scn.hasNextLine()) {
+                    line = scn.nextLine();
+                    classNum = Integer.parseInt(line.split(",")[1]);
+                }
+                else classNum = -1;
 
                 pstmt = conn.prepareStatement(INSERT_QUERY);
                 pstmt.setInt   (1, dataset_id);
                 pstmt.setInt   (2, i); // TO DO: this should autoincrement
                 pstmt.setString(3, img_path);
                 pstmt.setInt   (4, 0); //TO DO: folds
-                pstmt.setInt   (5, 0); //TO DO: class
+                pstmt.setInt   (5, classNum);
                 pstmt.setBinaryStream(6, inputs);
 
                 pstmt.executeUpdate();
@@ -93,6 +156,64 @@ public class DBInsert {
 
         return true;
     }// insertDataFromDir()
+
+    /**
+     * Inserts data into the training table from a csv text file.
+     *
+     * @author Charles Davenport
+     * @param csvPath - path to csv file
+     * @param dataset - name of dataset used in training
+     * @param modelName - name of CNN model, must match a record in cnn table
+     * @return
+     */
+    private static boolean insertTrain(String csvPath, String dataset, String modelName) {
+        final String SELECT_DATA_ID = "SELECT id FROM dataset WHERE name=?";
+        final String SELECT_CNN_ID  = "SELECT id FROM cnn WHERE name=?";
+        final String INSERT_TRAIN_QUERY = "INSERT INTO train VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+
+        Integer cnn_id     = null;
+        Integer dataset_id = null;
+        ResultSet rs;
+
+        try {
+            // get cnn_id from DB
+            PreparedStatement pstmt = conn.prepareStatement(SELECT_CNN_ID);
+            pstmt.setString(1, modelName);
+            pstmt.execute();
+            rs = pstmt.getResultSet();
+            if (rs == null) {
+                System.out.println("DBInsert.insertTrain(): Could not find cnn model: "
+                    + modelName);
+                return false;
+            }
+            rs.first();
+            cnn_id = rs.getInt(1);
+
+            // get dataset_id from DB
+            pstmt = conn.prepareStatement(SELECT_DATA_ID);
+            pstmt.setString(1, dataset);
+            pstmt.execute();
+            rs = pstmt.getResultSet();
+            if (rs == null) {
+                System.out.println("DBInsert.insertTrain(): Could not find dataset: "
+                        + modelName);
+                return false;
+            }
+            rs.first();
+            dataset_id = rs.getInt(1);
+
+            // open csv file containing training data
+            File tFile = 
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return true;
+    }
 
     /**
      * Connect to mysql database.
