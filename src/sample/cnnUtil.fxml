@@ -12,15 +12,17 @@
 
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <center>
-    <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="100.0" tabMinWidth="50.0">
+    <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="100.0" tabMinWidth="50.0" >
       <tabs>
         <Tab text="Model">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <ComboBox layoutX="32.0" layoutY="27.0" prefHeight="21.0" prefWidth="130.0" promptText="Select Model">
+                <ComboBox layoutX="32.0" layoutY="27.0" prefHeight="21.0" prefWidth="130.0" promptText="Select Model" >
                   <items>
-                    <FXCollections fx:factory="observableArrayList" />
+                    <FXCollections fx:factory="observableArrayList" >
+                      <String fx:id="reihe" fx:value="Reihenschaltung" />
+                    </FXCollections>
                   </items>
                 </ComboBox>
                 <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="69.0" prefHeight="462.0" prefWidth="170.0" style="-fx-background-color: White; ">
