@@ -21,19 +21,25 @@ public class DBInsert {
 
     private static final String imgDir = "D:\\Github\\ACM_ML\\Spring 2019\\MNIST_img";
     private static final String classesFilePath = "D:\\Github\\ACM_ML\\Spring 2019\\MNIST_classes.csv";
+    private static final String trainCSVPath = "C:\\Users\\cdave\\IdeaProjects\\CNNUtil\\store\\train\\MNIST_CNN_01_train.csv";
     private static final String datasetName = "MNIST";
+    private static final String cnnName = "MNIST_CNN_01";
 
 
     public static void main(String[] args) {
 
         connectToDB();
         //boolean success = insertDataFromDir(imgDir, classesFilePath, datasetName, 10);
-        //System.out.println(success ? "Sucessfully inserted images into DB"
+        //System.out.println(success ? "Successfully inserted images into DB"
         //        : "Failed to insert images to DB");
 
-        boolean success = updateDataClasses(classesFilePath, datasetName);
-        System.out.println(success ? "Sucessfully updated image classes in DB"
-                : "Failed to update image classes in DB");
+        //boolean success = updateDataClasses(classesFilePath, datasetName);
+        //System.out.println(success ? "Successfully updated image classes in DB"
+        //        : "Failed to update image classes in DB");
+
+        //boolean success = insertTrain(trainCSVPath, datasetName, cnnName);
+        //System.out.println(success ? "Successfully inserted train data into DB"
+        //                : "Failed to insert train data into DB");
 
     }
 
@@ -169,7 +175,8 @@ public class DBInsert {
     private static boolean insertTrain(String csvPath, String dataset, String modelName) {
         final String SELECT_DATA_ID = "SELECT id FROM dataset WHERE name=?";
         final String SELECT_CNN_ID  = "SELECT id FROM cnn WHERE name=?";
-        final String INSERT_TRAIN_QUERY = "INSERT INTO train VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        final String INSERT_TRAIN_QUERY = "INSERT INTO train (cnn_id, data_id, epoch, loss, acc) "
+            + " VALUES(?, ?, ?, ?, ?)";
 
         Integer cnn_id     = null;
         Integer dataset_id = null;
@@ -204,10 +211,30 @@ public class DBInsert {
 
             // open csv file containing training data
             File tFile = new File(csvPath);
+            Scanner scn = new Scanner(tFile);
+            String line;
+            while (scn.hasNextLine()) {
+                line = scn.nextLine();
+                String [] items = line.split(",");
+                //System.out.println(items[0] + ", " + items[1] + ", " + items[2]);
+                int epoch = Integer.parseInt(items[0]);
+                double loss = Double.parseDouble(items[1]);
+                double acc = Double.parseDouble(items[2]);
+                pstmt = conn.prepareStatement(INSERT_TRAIN_QUERY);
+                pstmt.setInt(1, cnn_id);
+                pstmt.setInt(2, dataset_id);
+                pstmt.setInt(3, epoch);
+                pstmt.setFloat(4, (float)loss);
+                pstmt.setFloat(5, (float)acc);
+
+                pstmt.executeUpdate();
+            }
 
 
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 

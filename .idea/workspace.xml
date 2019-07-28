@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cd91991-2cf6-4729-9ec5-e31db5ab852d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sql/Dump20190724/cnn_util_cnn.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sql/Dump20190724/cnn_util_data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sql/Dump20190724/cnn_util_dataset.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sql/Dump20190724/cnn_util_hyperparam.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sql/Dump20190724/cnn_util_layer.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sql/Dump20190724/cnn_util_test.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sql/Dump20190724/cnn_util_train.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/DBInsert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DBInsert.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -23,7 +15,7 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6447761">
+    <splitter split-orientation="horizontal" split-proportion="0.9">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -38,8 +30,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sample/DBInsert.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="502">
-                  <caret line="205" column="43" selection-start-line="205" selection-start-column="43" selection-end-line="205" selection-end-column="43" />
+                <state relative-caret-position="329">
+                  <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -103,8 +95,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="1216" />
+    <option name="x" value="570" />
+    <option name="width" value="1357" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
@@ -196,8 +188,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.DBInsert" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -226,7 +218,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10714286" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.06236674" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -235,7 +227,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20222223" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.41" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -290,8 +282,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DBInsert.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="205" column="43" selection-start-line="205" selection-start-column="43" selection-end-line="205" selection-end-column="43" />
+        <state relative-caret-position="329">
+          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
