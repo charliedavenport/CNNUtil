@@ -5,6 +5,8 @@ import java.util.Properties;
 
 public class TestQuery {
 
+    private static final String cnnSelectQuery = "SELECT * FROM cnn";
+
     public static ResultSet selectCNN() {
         ResultSet rs = null;
         Connection conn = null;

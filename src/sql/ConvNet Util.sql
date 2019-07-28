@@ -44,7 +44,8 @@ CREATE TABLE `dataset`
 CREATE TABLE `data`
 (
   `dataset` int NOT NULL,
-  `file_path` varchar(150) NOT NULL,
+  `id` int NOT NULL,
+  `file_path` varchar(150),
   `fold` int,
   `class` int
 );
@@ -52,7 +53,8 @@ CREATE TABLE `data`
 CREATE TABLE `hyperParam`
 (
   `cnn_id` int NOT NULL,
-  `layer` int NOT NULL,
+  `depth` int NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(150),
   `init_value` double,
   `current_value` double,
@@ -73,7 +75,7 @@ CREATE TABLE `layer`
 
 ALTER TABLE `layer` ADD PRIMARY KEY (`cnn_id`, `depth`);
 
-ALTER TABLE `hyperparam` ADD PRIMARY KEY (`cnn_id`, `layer`);
+ALTER TABLE `hyperparam` ADD PRIMARY KEY (`cnn_id`, `depth`, `id`);
 
 ALTER TABLE `test` ADD PRIMARY KEY (`cnn_id`, `data_id`);
 
@@ -91,9 +93,7 @@ ALTER TABLE `test` ADD FOREIGN KEY (`data_id`) REFERENCES `dataset` (`id`);
 
 ALTER TABLE `data` ADD FOREIGN KEY (`dataset`) REFERENCES `dataset` (`id`);
 
-ALTER TABLE `hyperParam` ADD FOREIGN KEY (`cnn_id`) REFERENCES `cnn` (`id`);
-
-ALTER TABLE `hyperParam` ADD FOREIGN KEY (`layer`) REFERENCES `layer` (`depth`);
+ALTER TABLE `hyperParam` ADD FOREIGN KEY (`cnn_id`, `depth`) REFERENCES `layer` (`cnn_id`, `depth`);
 
 ALTER TABLE `layer` ADD FOREIGN KEY (`cnn_id`) REFERENCES `cnn` (`id`);
 
