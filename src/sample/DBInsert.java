@@ -235,9 +235,7 @@ public class DBInsert {
 
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (SQLException | FileNotFoundException e) {
             e.printStackTrace();
         }
 

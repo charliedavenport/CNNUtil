@@ -21,6 +21,8 @@ public class Controller {
     @FXML
     private ComboBox<String> datasetComboBox;
 
+    @FXML ListView datasetListView;
+
     private String currentModelName;
     private String currentDatasetName;
 
@@ -37,14 +39,14 @@ public class Controller {
         datasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
 
         datasetComboBox.valueProperty()
-                .addListener((ov, s, t1) -> currentDatasetName = t1);
+                .addListener((ov, s, t1) -> {
+                    currentDatasetName = t1;
+                    List<String> info = TestQuery.selectDatasetInfo(currentDatasetName);
+                });
         modelComboBox.valueProperty()
-                .addListener((observableValue, s, t1) -> currentModelName = t1);
-    }
-
-    @FXML
-    private void handleDatasetCombo(ActionEvent event) {
-
+                .addListener((observableValue, s, t1) -> {
+                    currentModelName = t1;
+                });
     }
 
 

@@ -56,7 +56,7 @@ public class TestQuery {
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
             rs.first();
-            System.out.println(rs.getString(1));
+            //System.out.println(rs.getString(1));
             do {
                 names.add(rs.getString(1));
             } while (rs.next());
@@ -102,7 +102,7 @@ public class TestQuery {
             prop.put("serverTimezone", "UTC");
             prop.put("allowMultiQueries", true);
             conn = DriverManager.getConnection(url, prop);
-            System.out.println("Connected to DB: " + conn.getCatalog());
+            //System.out.println("Connected to DB: " + conn.getCatalog());
         }
         catch (ClassNotFoundException ex) {
             System.out.println("DBInsert.connectToDB(): ClassNotFoundException: "
@@ -115,5 +115,16 @@ public class TestQuery {
 
     }
 
+    /**
+     * @author Charles Davenport
+     * @param dataset - name of dataset
+     * @return List of Strings that describe this dataset
+     */
+    public static List<String> selectDatasetInfo(String dataset) {
+        List<String> rows = new ArrayList<>();
 
+
+
+        return rows;
+    }
 }
