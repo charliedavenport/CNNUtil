@@ -243,6 +243,10 @@ public class DBInsert {
         return true;
     }
 
+    //TODO
+    private static boolean insertUser(String username, String hashedPWD){
+        return false;
+    }
     /**
      * Connect to mysql database.
      * @author Charles Davenport
