@@ -1,5 +1,5 @@
 INSERT INTO cnn (id, name, layers, trainable_params, file_path)
-VALUES (001, "MNIST_CNN_01", 7, 225034, "\\store\\saved_models\\MNIST_CNN_01.h5" );
+VALUES (001, "MNIST_CNN_01", 6, 225034, "\\store\\saved_models\\MNIST_CNN_01.h5" );
 
 #UPDATE cnn SET file_path="\\store\\saved_models\\MNIST_CNN_01.h5" WHERE id=001;
 
