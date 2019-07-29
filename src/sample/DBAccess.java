@@ -14,8 +14,6 @@ public class DBAccess {
     private static Connection conn;
     private static String url = "jdbc:mysql://localhost:3306/cnn_util";
 
-    private static final String cnnSelectQuery = "SELECT * FROM cnn";
-
     /**
      * @author Charles Davenport
      * @return - List of names of all cnn's in DB
@@ -177,8 +175,21 @@ public class DBAccess {
                 String outputStr = "(" + rs.getInt("output_x") + ","
                         + rs.getInt("output_y") + ","
                         + rs.getInt("output_z") + ")";
-                Layer tmp = (type.equals("DENSE"))
-                        ? new Layer(cnnId,
+                Layer tmp;
+                if (type.equals("DENSE")) {
+                    tmp = new Layer(cnnId,
+                            rs.getInt("depth"),
+                            rs.getString("type"),
+                            rs.getInt("params"),
+                            rs.getInt("filters"),
+                            null,
+                            null,
+                            String.valueOf(rs.getInt("input_x")),
+                            //inputStr,
+                            String.valueOf(rs.getInt("output_x")));
+                }
+                else if (type.equals("FLATTEN")) {
+                    tmp = new Layer(cnnId,
                             rs.getInt("depth"),
                             rs.getString("type"),
                             rs.getInt("params"),
@@ -187,8 +198,10 @@ public class DBAccess {
                             null,
                             //String.valueOf(rs.getInt("input_x")),
                             inputStr,
-                            String.valueOf(rs.getInt("output_x")))
-                        : new Layer(cnnId,
+                            String.valueOf(rs.getInt("output_x")));
+                }
+                else {
+                    tmp = new Layer(cnnId,
                             rs.getInt("depth"),
                             rs.getString("type"),
                             rs.getInt("params"),
@@ -197,6 +210,8 @@ public class DBAccess {
                             strideStr,
                             inputStr,
                             outputStr);
+                }
+
                 layerInfo.add(tmp);
             } while (rs.next());
         } catch (SQLException e) {

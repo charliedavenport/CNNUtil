@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cd91991-2cf6-4729-9ec5-e31db5ab852d" name="Default Changelist" comment="" />
+    <list default="true" id="9cd91991-2cf6-4729-9ec5-e31db5ab852d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/ipynb/keras_MNIST.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CNNUtil/ipynb/keras_MNIST.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ipynb/.ipynb_checkpoints/TrainModels-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/ipynb/.ipynb_checkpoints/TrainModels-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ipynb/TrainModels.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/ipynb/TrainModels.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/DBAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DBAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sql/insert_cnn.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/insert_cnn.sql" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,7 +20,7 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5292524">
+    <splitter split-orientation="horizontal" split-proportion="0.40465873">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -49,8 +56,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="465">
-                  <caret line="94" column="22" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
+                <state relative-caret-position="113">
+                  <caret line="114" column="67" lean-forward="true" selection-start-line="114" selection-start-column="67" selection-end-line="114" selection-end-column="67" />
                 </state>
               </provider>
             </entry>
@@ -62,8 +69,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="284">
-                  <caret line="348" column="39" selection-start-line="348" selection-start-column="39" selection-end-line="348" selection-end-column="39" />
+                <state relative-caret-position="366">
+                  <caret line="196" column="33" lean-forward="true" selection-start-line="196" selection-start-column="33" selection-end-line="196" selection-end-column="33" />
                 </state>
               </provider>
             </entry>
@@ -428,15 +435,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="94" column="22" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
+        <state relative-caret-position="113">
+          <caret line="114" column="67" lean-forward="true" selection-start-line="114" selection-start-column="67" selection-end-line="114" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="348" column="39" selection-start-line="348" selection-start-column="39" selection-end-line="348" selection-end-column="39" />
+        <state relative-caret-position="366">
+          <caret line="196" column="33" lean-forward="true" selection-start-line="196" selection-start-column="33" selection-end-line="196" selection-end-column="33" />
         </state>
       </provider>
     </entry>
