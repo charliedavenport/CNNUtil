@@ -4,7 +4,7 @@
     <list default="true" id="9cd91991-2cf6-4729-9ec5-e31db5ab852d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CNNUtil/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/DBAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DBAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sql/insert_cnn.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/insert_cnn.sql" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,7 +17,7 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5297927">
+    <splitter split-orientation="horizontal" split-proportion="0.50946546">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -32,8 +32,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/sample/DBInsert.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-144">
-                  <caret line="211" column="23" lean-forward="true" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="23" />
+                <state relative-caret-position="4488">
+                  <caret line="211" column="23" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="23" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -44,8 +44,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="704">
-                  <caret line="60" column="45" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
+                <state relative-caret-position="508">
+                  <caret line="60" column="44" lean-forward="true" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -56,12 +56,12 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="177" column="30" selection-start-line="177" selection-start-column="30" selection-end-line="177" selection-end-column="30" />
+                <state relative-caret-position="508">
+                  <caret line="94" column="68" selection-start-line="94" selection-start-column="68" selection-end-line="94" selection-end-column="68" />
                 </state>
               </provider>
             </entry>
@@ -81,7 +81,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Charlie" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
   </component>
@@ -99,8 +99,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1736" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
@@ -288,14 +289,28 @@
       <option name="project" value="LOCAL" />
       <updated>1564372445214</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="remove TestQuery.class">
+      <created>1564373174464</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1564373174464</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Dataset Info in Data Tab">
+      <created>1564374166236</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1564374166236</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17697228" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.042643923" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -304,7 +319,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2188889" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -333,7 +348,9 @@
     <MESSAGE value="Data Tab" />
     <MESSAGE value="Merge branch 'master' of https://github.com/charliedavenport/CNNUtil&#10;&#10;# Conflicts:&#10;#&#9;out/production/CNNUtil/sample/Main.class&#10;#&#9;src/sample/Controller.java" />
     <MESSAGE value="Fixed Empty ResultSet in Stats" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Empty ResultSet in Stats" />
+    <MESSAGE value="remove TestQuery.class" />
+    <MESSAGE value="Dataset Info in Data Tab" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dataset Info in Data Tab" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -357,14 +374,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/cnnUtil.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -374,28 +383,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DBInsert.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
-          <caret line="211" column="23" lean-forward="true" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="23" />
+        <state relative-caret-position="4488">
+          <caret line="211" column="23" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/cnnUtil.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="62" column="46" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="94" column="68" selection-start-line="94" selection-start-column="68" selection-end-line="94" selection-end-column="68" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="60" column="45" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
+        <state relative-caret-position="508">
+          <caret line="60" column="44" lean-forward="true" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="177" column="30" selection-start-line="177" selection-start-column="30" selection-end-line="177" selection-end-column="30" />
         </state>
       </provider>
     </entry>
