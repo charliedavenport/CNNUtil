@@ -90,7 +90,7 @@ public class TestQuery {
     public static ResultSet selectCNNByName(String name) {
         ResultSet rs = null;
         //Connection conn = null;
-        String query = "SELECT layers,trainable_params FROM cnn WHERE name='" + name + "';";
+        String query = "SELECT layers,trainable_params,depth, type,params FROM cnn JOIN layer WHERE name='" + name + "';";
         System.out.println(query);
         try {
             connectToDB();

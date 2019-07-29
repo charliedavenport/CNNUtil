@@ -56,9 +56,18 @@ public class Controller {
             ResultSetMetaData meta = rs.getMetaData();
             int numCols = meta.getColumnCount();
             rs.first();
-            for (int i = 1; i <= numCols; i++) {
-                modelDataListView.getItems().add(rs.getString(i) + " " + meta.getColumnName(i));
-            }
+            modelDataListView.getItems().add(rs.getString(1) + " " + meta.getColumnName(1));
+            modelDataListView.getItems().add(rs.getString(2) + " " + meta.getColumnName(2));
+            do {
+                String temp = "";
+                for (int i = 3; i <= numCols; i++) {
+                    temp += meta.getColumnName(i) + " " + rs.getString(i) + "\t";
+                }
+                modelDataListView.getItems().add(temp);
+            } while (rs.next());
+//            for (int i = 1; i <= numCols; i++) {
+//                modelDataListView.getItems().add(rs.getString(i) + " " + meta.getColumnName(i));
+//            }
 
         }catch (SQLException ex) {
 
