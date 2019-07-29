@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -18,6 +21,9 @@ public class Controller {
     @FXML
     private ComboBox<String> datasetComboBox;
 
+    private String currentModelName;
+    private String currentDatasetName;
+
     public Controller() {
 
     }
@@ -29,12 +35,18 @@ public class Controller {
 
         List<String> datasetNames = TestQuery.SelectDatasetNames();
         datasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
+
+        datasetComboBox.valueProperty()
+                .addListener((ov, s, t1) -> currentDatasetName = t1);
+        modelComboBox.valueProperty()
+                .addListener((observableValue, s, t1) -> currentModelName = t1);
     }
 
     @FXML
-    private void printOutput() {
+    private void handleDatasetCombo(ActionEvent event) {
 
     }
+
 
 
 

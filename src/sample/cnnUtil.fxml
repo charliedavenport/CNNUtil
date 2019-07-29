@@ -46,7 +46,7 @@
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <ComboBox fx:id="datasetComboBox" layoutX="34.0" layoutY="29.0" prefHeight="21.0" prefWidth="127.0" promptText="Select DataSet">
+                <ComboBox fx:id="datasetComboBox" layoutX="34.0" layoutY="29.0" onAction="#handleDatasetCombo" prefHeight="21.0" prefWidth="127.0" promptText="Select DataSet">
                   <items>
                     <FXCollections fx:factory="observableArrayList" />
                   </items>
