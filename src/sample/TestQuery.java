@@ -21,7 +21,33 @@ public class TestQuery {
      * @return - List of names of all cnn's in DB
      */
     public static List<String> SelectCnnNames() {
-        final String query = "SELECT name FROM CNN";
+        final String query = "SELECT name FROM cnn";
+        List<String> names = new ArrayList<>();
+        try {
+            connectToDB();
+
+            CallableStatement stmt = conn.prepareCall(query);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            rs.first();
+            System.out.println(rs.getString(1));
+            do {
+                names.add(rs.getString(1));
+            } while (rs.next());
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return names;
+    }
+
+    /**
+     * @author Charles Davenport
+     * @return - List of names of all datasets in DB
+     */
+    public static List<String> SelectDatasetNames() {
+        final String query = "SELECT name FROM dataset";
         List<String> names = new ArrayList<>();
         try {
             connectToDB();
