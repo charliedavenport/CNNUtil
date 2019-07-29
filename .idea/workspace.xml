@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cd91991-2cf6-4729-9ec5-e31db5ab852d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CNNUtil/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sample/cnnUtil.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CNNUtil/sample/cnnUtil.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/DBAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DBAccess.java" afterDir="false" />
-    </list>
+    <list default="true" id="9cd91991-2cf6-4729-9ec5-e31db5ab852d" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
