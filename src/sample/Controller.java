@@ -7,7 +7,13 @@ import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -33,6 +39,12 @@ public class Controller {
 
     @FXML
     private ComboBox<String> datasetComboBox;
+
+    @FXML
+    private ComboBox<String> datasetClassComboBox;
+
+    @FXML
+    private GridPane datasetGridPane;
 
     @FXML
     private ComboBox<String> evalDatasetComboBox;
@@ -75,6 +87,7 @@ public class Controller {
 
     private String currentModelName;
     private String currentDatasetName;
+    private int currentDatasetClassNumber;
     private String evalDatasetName;
     private String statsDatasetName;
     private String statsModelName;
@@ -103,6 +116,32 @@ public class Controller {
                     datasetListView.getItems().clear();
                     List<String> datasetInfo = DBAccess.datasetInfoByName(currentDatasetName);
                     datasetListView.getItems().addAll(datasetInfo);
+                    int numClasses = DBAccess.datasetClassesByName(currentDatasetName);
+                    for(int i = 1; i<=numClasses;i++){
+                        datasetClassComboBox.getItems().add("Class " + Integer.toString(i));
+                    }
+                });
+        datasetClassComboBox.valueProperty()
+                .addListener((ov, s, t1) -> {
+                    currentDatasetClassNumber = (Integer.parseInt(t1.replace("Class ", "")));
+                    List<Blob> blobs = DBAccess.datasetIMGsByData(currentDatasetName,currentDatasetClassNumber);
+                    if(blobs == null)
+                        return;
+                    List<ImageView> converted = new ArrayList<>();
+
+                    try {
+                        int curBlob = 0;
+                        for(int j = 0; j < 4; j++) {
+                            for (int k = 0; k < 3; k++) {
+                                InputStream in = blobs.get(k+(j*3)).getBinaryStream();
+                                System.out.println(blobs.get(k+(j*3)));
+                                Image img = new Image(in);
+                                datasetGridPane.add(new ImageView(img), k, j);
+                            }
+                        }
+                    } catch (SQLException ex){
+
+                    }
                 });
         modelComboBox.valueProperty()
                 .addListener((observableValue, s, t1) -> {
@@ -130,7 +169,10 @@ public class Controller {
         lossColumn.setCellValueFactory(new PropertyValueFactory<>("loss"));
     }
 
+    @FXML
+    private void handleDatasetGridPane(){
 
+    }
 
     @FXML
     private void handleStatDatasetCombo(ActionEvent event) {
