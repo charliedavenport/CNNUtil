@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.collections.*?>
@@ -9,8 +10,8 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Text?>
-
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
   <center>
     <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="100.0" tabMinWidth="50.0">
@@ -90,12 +91,14 @@
                   <padding>
                     <Insets />
                   </padding>
-                  <Label alignment="CENTER" font="$x1" minHeight="21.0" prefHeight="34.0" prefWidth="386.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" text="Dataset" textAlignment="CENTER" underline="false" />
-                  <Pane prefHeight="428.0" prefWidth="170.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-                    <children>
-                      <ListView id="listView" fx:id="datasetListView" layoutX="0.0" layoutY="0.0" prefHeight="428.0" prefWidth="284.0" />
-                    </children>
-                  </Pane>
+                   <children>
+                     <Label alignment="CENTER" font="$x1" minHeight="21.0" prefHeight="34.0" prefWidth="386.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" text="Dataset" textAlignment="CENTER" underline="false" />
+                     <Pane prefHeight="428.0" prefWidth="170.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                       <children>
+                         <ListView id="listView" fx:id="datasetListView" layoutX="0.0" layoutY="0.0" prefHeight="428.0" prefWidth="284.0" />
+                       </children>
+                     </Pane>
+                   </children>
                 </VBox>
               </children>
             </AnchorPane>
@@ -108,21 +111,50 @@
         </Tab>
         <Tab text="Evaluate">
           <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ComboBox id="comboBox" fx:id="evalDatasetComboBox" layoutX="32.0" layoutY="27.0" onAction="#handleEvalDatasetCombo" prefHeight="21.0" prefWidth="130.0" promptText="Select Dataset">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList" />
+                           </items>
+                        </ComboBox>
+                        <TableView fx:id="evalTable" layoutX="32.0" layoutY="74.0" prefHeight="472.0" prefWidth="330.0" visible="false">
+                          <columns>
+                            <TableColumn fx:id="modelColumn" prefWidth="150.0" text="Model Name" />
+                            <TableColumn fx:id="accColumn" minWidth="0.0" prefWidth="88.0" text="Accuracy" />
+                              <TableColumn fx:id="lossColumn" minWidth="0.0" prefWidth="90.0" text="Loss" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
           </content>
         </Tab>
         <Tab text="Stats">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-              <children>
-                <ComboBox id="comboBox" fx:id="statsDatasetComboBox" layoutX="32.0" layoutY="27.0" onAction="#handleStatDatasetCombo" prefHeight="21.0" prefWidth="130.0" promptText="Select Dataset">
-                  <items>
-                    <FXCollections fx:factory="observableArrayList" />
-                  </items>
-                </ComboBox>
-                <ComboBox fx:id="statsModelComboBox" layoutX="194.0" layoutY="27.0" prefHeight="21.0" prefWidth="130.0" promptText="Select Model" visible="false" />
-              </children>
-            </AnchorPane>
+                     <children>
+                        <ComboBox id="comboBox" fx:id="statsDatasetComboBox" layoutX="32.0" layoutY="27.0" onAction="#handleStatDatasetCombo" prefHeight="21.0" prefWidth="130.0" promptText="Select Dataset">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList" />
+                           </items>
+                        </ComboBox>
+                        <ComboBox fx:id="statsModelComboBox" layoutX="194.0" layoutY="27.0" onAction="#handleStatModelCombo" prefHeight="21.0" prefWidth="130.0" promptText="Select Model" visible="false" />
+                        <LineChart fx:id="lossChart" layoutX="10.0" layoutY="68.0" prefHeight="488.0" prefWidth="390.0" title="Loss over Time" visible="false">
+                          <xAxis>
+                            <NumberAxis label="Epoch" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Loss" side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                        <LineChart fx:id="accChart" layoutX="400.0" layoutY="68.0" prefHeight="488.0" prefWidth="390.0" title="Accuracy over Time" visible="false">
+                           <xAxis>
+                              <NumberAxis label="Epoch" side="BOTTOM" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis label="Accuracy" side="LEFT" />
+                           </yAxis>
+                        </LineChart>
+                     </children></AnchorPane>
           </content>
         </Tab>
       </tabs>
