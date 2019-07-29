@@ -84,16 +84,12 @@
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ComboBox id="comboBox" fx:id="statsDatasetComboBox" layoutX="32.0" layoutY="27.0" prefHeight="21.0" prefWidth="130.0" promptText="Select Dataset">
+                        <ComboBox id="comboBox" fx:id="statsDatasetComboBox" layoutX="32.0" layoutY="27.0" onAction="#handleStatDatasetCombo" prefHeight="21.0" prefWidth="130.0" promptText="Select Dataset">
                            <items>
                               <FXCollections fx:factory="observableArrayList" />
                            </items>
                         </ComboBox>
-                        <ComboBox id="comboBox" fx:id="statsModelComboBox" layoutX="194.0" layoutY="27.0" prefHeight="21.0" prefWidth="130.0" promptText="Select Model">
-                           <items>
-                              <FXCollections fx:factory="observableArrayList" />
-                           </items>
-                        </ComboBox>
+                        <ListView fx:id="modelListView" layoutX="192.0" layoutY="27.0" prefHeight="60.0" prefWidth="130.0" visible="false" />
                      </children></AnchorPane>
           </content>
         </Tab>

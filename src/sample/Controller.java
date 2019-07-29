@@ -25,10 +25,11 @@ public class Controller {
     private ComboBox<String> statsDatasetComboBox;
 
     @FXML
-    private ComboBox<String> statsModelComboBox;
+    private ListView modelListView;
 
     private String currentModelName;
     private String currentDatasetName;
+    private String statsDatasetName;
 
     public Controller() {
 
@@ -38,7 +39,6 @@ public class Controller {
     private void initialize() {
         List<String> modelNames = TestQuery.SelectCnnNames();
         modelComboBox.getItems().setAll(modelNames.toArray(new String[0]));
-        statsModelComboBox.getItems().setAll(modelNames.toArray(new String[0]));
 
         List<String> datasetNames = TestQuery.SelectDatasetNames();
         datasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
@@ -48,6 +48,8 @@ public class Controller {
                 .addListener((ov, s, t1) -> currentDatasetName = t1);
         modelComboBox.valueProperty()
                 .addListener((observableValue, s, t1) -> currentModelName = t1);
+        statsDatasetComboBox.valueProperty()
+                .addListener((ov, s, tl) -> statsDatasetName = tl);
     }
 
     @FXML
@@ -55,7 +57,16 @@ public class Controller {
 
     }
 
+    @FXML
+    private void handleStatDatasetCombo(ActionEvent event) {
+        System.out.println(statsDatasetName);
+        List<String> modelNames = TestQuery.SelectCnnNames(statsDatasetName);
+        for(int i = 0; i < modelNames.size(); i++)
+            System.out.println(modelNames.get(i));
 
+        modelListView.getItems().setAll(modelNames.toArray(new String[0]));
+        modelListView.setVisible(true);
+    }
 
 
 }
