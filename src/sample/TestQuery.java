@@ -75,10 +75,9 @@ public class TestQuery {
         String query = "SELECT * FROM cnn JOIN layer;";
         try {
             connectToDB();
-
             CallableStatement cStmt = conn.prepareCall(query);
             boolean success = cStmt.execute();
-            System.out.println(success);
+            //System.out.println(success);
             rs = cStmt.getResultSet();
 
         } catch (SQLException ex) {
@@ -87,6 +86,26 @@ public class TestQuery {
 
         return rs;
     }
+
+    public static ResultSet selectCNNByName(String name) {
+        ResultSet rs = null;
+        //Connection conn = null;
+        String query = "SELECT layers,trainable_params FROM cnn WHERE name='" + name + "';";
+        System.out.println(query);
+        try {
+            connectToDB();
+            CallableStatement cStmt = conn.prepareCall(query);
+            boolean success = cStmt.execute();
+            //System.out.println(success);
+            rs = cStmt.getResultSet();
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+
+        return rs;
+    }
+
 
     /**
      * Connect to mysql database.
