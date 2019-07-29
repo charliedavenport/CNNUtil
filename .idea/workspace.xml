@@ -13,7 +13,7 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4794686">
+    <splitter split-orientation="horizontal" split-proportion="0.56219804">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -49,8 +49,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="352">
-                  <caret line="106" column="37" lean-forward="true" selection-start-line="106" selection-start-column="37" selection-end-line="106" selection-end-column="37" />
+                <state relative-caret-position="209">
+                  <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -59,11 +59,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="308">
-                  <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+                <state relative-caret-position="94">
+                  <caret line="363" column="39" selection-start-line="363" selection-start-column="39" selection-end-line="363" selection-end-column="39" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -71,11 +71,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sample/cnnUtil.fxml">
               <provider editor-type-id="JavaFX-Scene-Builder" />
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1914">
+                <state relative-caret-position="466">
                   <caret line="87" column="26" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="26" />
                 </state>
               </provider>
@@ -142,6 +142,13 @@
               <item name="CNNUtil" type="b2602c69:ProjectViewProjectNode" />
               <item name="CNNUtil" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CNNUtil" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CNNUtil" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -355,7 +362,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.11111111" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32333332" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -440,15 +447,15 @@
     <entry file="file://$PROJECT_DIR$/src/sample/cnnUtil.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1914">
+        <state relative-caret-position="466">
           <caret line="87" column="26" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+        <state relative-caret-position="94">
+          <caret line="363" column="39" selection-start-line="363" selection-start-column="39" selection-end-line="363" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -457,8 +464,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="106" column="37" lean-forward="true" selection-start-line="106" selection-start-column="37" selection-end-line="106" selection-end-column="37" />
+        <state relative-caret-position="209">
+          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
         </state>
       </provider>
     </entry>
