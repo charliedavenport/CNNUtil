@@ -2,8 +2,7 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 
 import java.util.List;
 
@@ -27,6 +26,15 @@ public class Controller {
     @FXML
     private ComboBox<String> statsModelComboBox;
 
+    @FXML
+    private Label modelLabel;
+
+    @FXML
+    private TableView<Layer> layerTable;
+
+    @FXML
+    private Label layerDataLabel;
+
     private String currentModelName;
     private String currentDatasetName;
     private String statsDatasetName;
@@ -39,6 +47,8 @@ public class Controller {
     private void initialize() {
         List<String> modelNames = DBAccess.SelectCnnNames();
         modelComboBox.getItems().setAll(modelNames.toArray(new String[0]));
+
+        //layerTable.getItems().add(new Layer(0,0,"type",0,0,"kernel","stride","input","output"));
 
         List<String> datasetNames = DBAccess.SelectDatasetNames();
         datasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
@@ -54,9 +64,16 @@ public class Controller {
         modelComboBox.valueProperty()
                 .addListener((observableValue, s, t1) -> {
                     currentModelName = t1;
+                    modelLabel.setText(currentModelName + " Model Data");
+                    layerDataLabel.setText(currentModelName + " Layer Data");
+                    // update modelData ListView
                     modelDataListView.getItems().clear();
                     List<String> modelData = DBAccess.CNNInfoByName(currentModelName);
                     modelDataListView.getItems().addAll(modelData);
+                    // update layerData TableView
+                    layerTable.getItems().clear();
+                    List<Layer> layerInfo = DBAccess.layerInfoByCNN(currentModelName);
+                    layerTable.getItems().addAll(layerInfo);
                 });
         statsDatasetComboBox.valueProperty()
                 .addListener((ov, s, tl) -> statsDatasetName = tl);

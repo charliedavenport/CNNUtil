@@ -112,10 +112,9 @@ public class DBAccess {
      */
     public static List<String> CNNInfoByName(String name) {
         List<String> cnnInfo = new ArrayList<>();
-        ResultSet rs = null;
+        ResultSet rs;
         //Connection conn = null;
         String query1 = "SELECT id, layers,trainable_params FROM cnn WHERE name=?;";
-        String query2 = "SELECT * FROM layer where cnn_id=?;";
         //System.out.println(query1);
         try {
             connectToDB();
@@ -131,24 +130,7 @@ public class DBAccess {
             cnnInfo.add("Layers:\t" + rs.getInt("layers"));
             cnnInfo.add("Trainable Params:\t" + rs.getInt("trainable_params"));
 
-            // SECOND QUERY - GET LAYERS INFO
-            pStmt = conn.prepareStatement(query2);
-            pStmt.setInt(1, cnnId);
-            pStmt.execute();
-            rs = pStmt.getResultSet();
-            rs.first();
-            do {
-                String layerStr = "Layer " + rs.getInt("depth")
-                        + ": " + rs.getString("type")
-                        + "\tParameters: " + rs.getInt("params");
-                if (rs.getInt("kernel_x") > 0) {
-                    layerStr += "\tKernel size: (" + rs.getInt("kernel_x")
-                                + "," + rs.getInt("kernel_y") + ")"
-                                + "\tStrides: (" + rs.getInt("stride_x")
-                                + "," + rs.getInt("stride_y") + ")";
-                }
-                cnnInfo.add(layerStr);
-            } while (rs.next());
+
 
 
         } catch (SQLException ex) {
@@ -156,7 +138,62 @@ public class DBAccess {
         }
 
         return cnnInfo;
+    }//CNNInfoByName()
+
+    public static List<Layer> layerInfoByCNN(String cnnName) {
+        List<Layer> layerInfo = new ArrayList<>();
+        ResultSet rs;
+        String query1 = "SELECT id FROM cnn WHERE name=?;";
+        String query2 = "SELECT * FROM layer where cnn_id=?;";
+        try {
+            connectToDB();
+            PreparedStatement pStmt = conn.prepareStatement(query1);
+            pStmt.setString(1, cnnName);
+            pStmt.execute();
+            rs = pStmt.getResultSet();
+            // check if empty - no match in db
+            if (!rs.next()) {
+                return layerInfo;
+            }
+            rs.first();
+            int cnnId = rs.getInt("id");
+            pStmt = conn.prepareStatement(query2);
+            pStmt.setInt(1, cnnId);
+            pStmt.execute();
+            rs = pStmt.getResultSet();
+            if (!rs.next()) {
+                return layerInfo;
+            }
+            rs.first();
+            do {
+                String kernelStr = "(" + rs.getInt("kernel_x") + ","
+                        + rs.getInt("kernel_y") + ")";
+                String strideStr = "(" + rs.getInt("stride_x") + ","
+                        + rs.getInt("stride_y") + ")";
+                String inputStr = "(" + rs.getInt("input_x") + ","
+                        + rs.getInt("input_y") + ","
+                        + rs.getInt("input_z") + ")";
+                String outputStr = "(" + rs.getInt("output_x") + ","
+                        + rs.getInt("output_y") + ","
+                        + rs.getInt("output_z") + ")";
+                Layer tmp = new Layer(cnnId,
+                        rs.getInt("depth"),
+                        rs.getString("type"),
+                        rs.getInt("params"),
+                        rs.getInt("filters"),
+                        kernelStr,
+                        strideStr,
+                        inputStr,
+                        outputStr);
+                layerInfo.add(tmp);
+            } while (rs.next());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return layerInfo;
     }
+
 
 
     /**
