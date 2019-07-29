@@ -75,7 +75,7 @@ public class DBAccess {
      * @param name - name of dataset
      * @return List of Strings describing the dataset
      */
-    public static List<String> DatasetInfoByName(String name) {
+    public static List<String> datasetInfoByName(String name) {
         List<String> datasetInfo = new ArrayList<>();
         String query1 = "SELECT * FROM dataset WHERE name=?;";
 
@@ -85,7 +85,14 @@ public class DBAccess {
             pStmt.setString(1, name);
             pStmt.execute();
             ResultSet rs = pStmt.getResultSet();
+            if (!rs.next()) {
+                return datasetInfo;
+            }
             rs.first();
+            datasetInfo.add("Samples: " + rs.getInt("samples"));
+            datasetInfo.add("# of Classes: " + rs.getInt("classes"));
+            datasetInfo.add("Image Size: (" + rs.getInt("img_x") + ","
+                + rs.getInt("img_y") + "," + rs.getInt("img_z") + ")");
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -220,16 +227,4 @@ public class DBAccess {
 
     }
 
-    /**
-     * @author Charles Davenport
-     * @param dataset - name of dataset
-     * @return List of Strings that describe this dataset
-     */
-    public static List<String> selectDatasetInfo(String dataset) {
-        List<String> rows = new ArrayList<>();
-
-
-
-        return rows;
-    }
 }

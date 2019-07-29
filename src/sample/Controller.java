@@ -19,6 +19,9 @@ public class Controller {
     private ComboBox<String> datasetComboBox;
 
     @FXML
+    private ListView datasetListView;
+
+    @FXML
     private ComboBox<String> statsDatasetComboBox;
 
     @FXML
@@ -42,7 +45,12 @@ public class Controller {
         statsDatasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
 
         datasetComboBox.valueProperty()
-                .addListener((ov, s, t1) -> currentDatasetName = t1);
+                .addListener((ov, s, t1) -> {
+                    currentDatasetName = t1;
+                    datasetListView.getItems().clear();
+                    List<String> datasetInfo = DBAccess.datasetInfoByName(currentDatasetName);
+                    datasetListView.getItems().addAll(datasetInfo);
+                });
         modelComboBox.valueProperty()
                 .addListener((observableValue, s, t1) -> {
                     currentModelName = t1;
