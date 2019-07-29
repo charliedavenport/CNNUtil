@@ -108,6 +108,42 @@ public class TestQuery {
 
 
     /**
+     * @param dataset   the dataset on which cnn's should have been trained
+     * @author Quinn Wyner
+     * @return - List of names of all cnn's in DB that have trained on dataset
+     */
+    public static List<String> SelectCnnNames(String dataset) {
+        final String query = "SELECT DISTINCT C.name\n" +
+                "FROM cnn C,\n" +
+                "\t(SELECT T.cnn_id\n" +
+                "     FROM train T, \n" +
+                "\t\t(SELECT D.id\n" +
+                "         FROM dataset D\n" +
+                "         WHERE D.name = ?) E\n" +
+                "\t WHERE T.data_id = E.id) U\n" +
+                "WHERE C.id = U.cnn_id;";
+        List<String> names = new ArrayList<>();
+        try {
+            connectToDB();
+
+            CallableStatement stmt = conn.prepareCall(query);
+            stmt.setString(1, dataset);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            rs.first();
+            System.out.println(rs.getString(1));
+            do {
+                names.add(rs.getString(1));
+            } while (rs.next());
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return names;
+    }
+
+    /**
      * Connect to mysql database.
      * @author Charles Davenport
      */
