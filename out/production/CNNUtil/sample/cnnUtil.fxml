@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
   <center>
     <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="100.0" tabMinWidth="50.0">
       <tabs>
@@ -23,20 +23,22 @@
                     <FXCollections fx:factory="observableArrayList" />
                   </items>
                 </ComboBox>
-                <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="69.0" prefHeight="462.0" prefWidth="386.0" style="-fx-background-color: White; ">
+                <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="69.0" prefHeight="462.0" prefWidth="558.0" style="-fx-background-color: White; ">
+                  <children>
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="21.0" prefHeight="34.0" prefWidth="453.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" text="Model Data" textAlignment="CENTER" underline="false">
+                      <font>
+                        <Font name="System Bold" size="16.0" fx:id="x1" />
+                      </font>
+                    </Label>
+                    <Pane prefHeight="428.0" prefWidth="170.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
+                      <children>
+                        <ListView id="listView" fx:id="modelDataListView" layoutX="0.0" layoutY="0.0" maxWidth="1.7976931348623157E308" prefHeight="428.0" prefWidth="558.0" />
+                      </children>
+                    </Pane>
+                  </children>
                   <padding>
                     <Insets />
                   </padding>
-                  <Label alignment="CENTER" minHeight="21.0" prefHeight="34.0" prefWidth="386.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" text="Model Data" textAlignment="CENTER" underline="false">
-                    <font>
-                      <Font name="System Bold" size="16.0" fx:id="x1" />
-                    </font>
-                  </Label>
-                  <Pane prefHeight="428.0" prefWidth="170.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
-                    <children>
-                      <ListView id="listView" fx:id="modelDataListView" layoutX="0.0" layoutY="0.0" prefHeight="428.0" prefWidth="386.0" />
-                    </children>
-                  </Pane>
                 </VBox>
               </children>
             </AnchorPane>
@@ -46,7 +48,7 @@
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <ComboBox fx:id="datasetComboBox" layoutX="34.0" layoutY="29.0" onAction="#handleDatasetCombo" prefHeight="21.0" prefWidth="127.0" promptText="Select DataSet">
+                <ComboBox fx:id="datasetComboBox" layoutX="34.0" layoutY="29.0" prefHeight="21.0" prefWidth="127.0" promptText="Select DataSet">
                   <items>
                     <FXCollections fx:factory="observableArrayList" />
                   </items>
@@ -58,7 +60,7 @@
                   <Label alignment="CENTER" font="$x1" minHeight="21.0" prefHeight="34.0" prefWidth="386.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" text="Dataset" textAlignment="CENTER" underline="false" />
                   <Pane prefHeight="428.0" prefWidth="170.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;">
                     <children>
-                      <ListView id="listView" layoutX="0.0" layoutY="0.0" prefHeight="428.0" prefWidth="284.0" />
+                      <ListView id="listView" fx:id="datasetListView" layoutX="0.0" layoutY="0.0" prefHeight="428.0" prefWidth="284.0" />
                     </children>
                   </Pane>
                 </VBox>
@@ -79,18 +81,15 @@
         <Tab text="Stats">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ComboBox id="comboBox" fx:id="modelComboBox1" layoutX="32.0" layoutY="27.0" prefHeight="21.0" prefWidth="130.0" promptText="Select Dataset">
-                           <items>
-                              <FXCollections fx:factory="observableArrayList" />
-                           </items>
-                        </ComboBox>
-                        <ComboBox id="comboBox" fx:id="modelComboBox11" layoutX="194.0" layoutY="27.0" prefHeight="21.0" prefWidth="130.0" promptText="Select Model">
-                           <items>
-                              <FXCollections fx:factory="observableArrayList" />
-                           </items>
-                        </ComboBox>
-                     </children></AnchorPane>
+              <children>
+                <ComboBox id="comboBox" fx:id="statsDatasetComboBox" layoutX="32.0" layoutY="27.0" onAction="#handleStatDatasetCombo" prefHeight="21.0" prefWidth="130.0" promptText="Select Dataset">
+                  <items>
+                    <FXCollections fx:factory="observableArrayList" />
+                  </items>
+                </ComboBox>
+                <ComboBox fx:id="statsModelComboBox" layoutX="194.0" layoutY="27.0" prefHeight="21.0" prefWidth="130.0" promptText="Select Model" visible="false" />
+              </children>
+            </AnchorPane>
           </content>
         </Tab>
       </tabs>
