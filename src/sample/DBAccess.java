@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 /**
  * Class containing static methods for querying the DataBase
@@ -101,7 +102,60 @@ public class DBAccess {
         return datasetInfo;
     }
 
+    public static int datasetClassesByName(String name){
+        ResultSet rs;
+        String query1 = "SELECT classes FROM dataset WHERE name=?;";
+        try {
+            connectToDB();
+            PreparedStatement pStmt = conn.prepareStatement(query1);
+            pStmt.setString(1, name);
+            pStmt.execute();
+            rs = pStmt.getResultSet();
+            rs.first();
 
+            return rs.getInt("classes");
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+        return 0;
+    }
+
+    public static List<Blob> datasetIMGsByData(String datasetName,int curClass) {
+        List<Blob> blobs = new ArrayList<>();
+        ResultSet rs;
+        String query1 = "SELECT image FROM dataset JOIN data WHERE name=? and class=?;";
+        try {
+            connectToDB();
+            PreparedStatement pStmt = conn.prepareStatement(query1);
+            pStmt.setString(1, datasetName);
+            pStmt.setString(2, Integer.toString(curClass));
+            pStmt.execute();
+            rs = pStmt.getResultSet();
+            rs.first();
+            int rsLen = 0;
+            while(rs.next()) {
+                rsLen++;
+            }
+            if(rsLen <= 0)
+                return null;
+            rs.first();
+            Random r = new Random();
+            List<Blob> allBlobs = new ArrayList<>();
+            while(rs.next()){
+                allBlobs.add(rs.getBlob(1));
+            }
+            for(int i = 0; i<12;i++){
+                blobs.add(allBlobs.get(r.nextInt(rsLen)));
+            }
+            System.out.println(allBlobs.size());
+            System.out.println(blobs.size());
+            return blobs;
+
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+        return null;
+    }
     /**
      * Get a List of Strings to put in Model ListView
      *
@@ -345,8 +399,8 @@ public class DBAccess {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             Properties prop = new Properties();
-            prop.put("user", "root");
-            prop.put("password", "16FishFillet");
+            prop.put("user", "java");
+            prop.put("password", "admin");
             prop.put("serverTimezone", "UTC");
             prop.put("allowMultiQueries", true);
             conn = DriverManager.getConnection(url, prop);
