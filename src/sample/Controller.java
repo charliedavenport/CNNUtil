@@ -44,20 +44,17 @@ public class Controller {
         datasetComboBox.valueProperty()
                 .addListener((ov, s, t1) -> currentDatasetName = t1);
         modelComboBox.valueProperty()
-                .addListener((observableValue, s, t1) -> currentModelName = t1);
-        modelComboBox.valueProperty().addListener((observableValue, s, t1) -> updateModelData());
+                .addListener((observableValue, s, t1) -> {
+                    currentModelName = t1;
+                    modelDataListView.getItems().clear();
+                    List<String> modelData = DBAccess.CNNInfoByName(currentModelName);
+                    modelDataListView.getItems().addAll(modelData);
+                });
         statsDatasetComboBox.valueProperty()
                 .addListener((ov, s, tl) -> statsDatasetName = tl);
     }
 
-    @FXML
-    private void updateModelData(){
 
-        modelDataListView.getItems().clear();
-        List<String> modelData = DBAccess.CNNInfoByName(currentModelName);
-
-        modelDataListView.getItems().addAll(modelData);
-    }
 
     @FXML
     private void handleStatDatasetCombo(ActionEvent event) {

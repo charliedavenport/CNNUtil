@@ -175,8 +175,13 @@ public class DBAccess {
             stmt.setString(1, dataset);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
+            // check for null ResultSet
+            if (!rs.next()){
+                //System.out.println("empty rs");
+                return names;
+            }
             rs.first();
-            System.out.println(rs.getString(1));
+            //System.out.println(rs.getString(1));
             do {
                 names.add(rs.getString(1));
             } while (rs.next());
