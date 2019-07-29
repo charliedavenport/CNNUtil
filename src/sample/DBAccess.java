@@ -263,7 +263,8 @@ public class DBAccess {
                 "            FROM dataset D\n" +
                 "            WHERE D.name = ?) E\n" +
                 "\t  WHERE S.data_id = E.id) T\n" +
-                "WHERE C.id = T.cnn_id;";
+                "WHERE C.id = T.cnn_id\n" +
+                "ORDER BY T.acc;";
         List<EvaluatedModel> models = new ArrayList<>();
         try {
             connectToDB();
