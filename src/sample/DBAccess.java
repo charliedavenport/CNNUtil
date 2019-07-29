@@ -264,7 +264,7 @@ public class DBAccess {
                 "            WHERE D.name = ?) E\n" +
                 "\t  WHERE S.data_id = E.id) T\n" +
                 "WHERE C.id = T.cnn_id\n" +
-                "ORDER BY T.acc;";
+                "ORDER BY T.acc DESC;";
         List<EvaluatedModel> models = new ArrayList<>();
         try {
             connectToDB();
