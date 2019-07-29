@@ -153,7 +153,7 @@ public class DBAccess {
 
 
     /**
-     * @param dataset   the dataset on which cnn's should have been trained
+     * @param dataset   the dataset on which cnns should have been trained
      * @author Quinn Wyner
      * @return - List of names of all cnn's in DB that have trained on dataset
      */
@@ -194,6 +194,47 @@ public class DBAccess {
     }
 
     /**
+     * @param dataset   the dataset on which cnns should have been evaluated
+     * @author Quinn Wyner
+     * @return - List of EvaluatedModels evaluated on dataset
+     */
+    public static List<EvaluatedModel> SelectEval(String dataset) {
+        final String query = "SELECT C.name, T.acc, T.loss\n" +
+                "FROM cnn C,\n" +
+                "\t (SELECT S.cnn_id, S.acc, S.loss\n" +
+                "      FROM test S,\n" +
+                "\t\t   (SELECT D.id\n" +
+                "            FROM dataset D\n" +
+                "            WHERE D.name = ?) E\n" +
+                "\t  WHERE S.data_id = E.id) T\n" +
+                "WHERE C.id = T.cnn_id;";
+        List<EvaluatedModel> models = new ArrayList<>();
+        try {
+            connectToDB();
+
+            CallableStatement stmt = conn.prepareCall(query);
+            stmt.setString(1, dataset);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            // check for empty ResultSet
+            if (!rs.next()){
+                //System.out.println("empty rs");
+                return models;
+            }
+            rs.first();
+            //System.out.println(rs.getString(1));
+            do {
+                models.add(new EvaluatedModel(rs.getString(1), rs.getDouble(2), rs.getDouble(3)));
+            } while (rs.next());
+        }
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return models;
+    }
+
+    /**
      * @param dataset   the dataset on which cnn's should have been trained
      * @param cnn       the cnn whose training data should be loaded
      * @author Quinn Wyner
@@ -222,6 +263,8 @@ public class DBAccess {
             stmt.setString(2, cnn);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
+            if(!rs.next())
+                return lists;
             rs.first();
             do {
                 lists.get(0).add(rs.getInt("epoch"));
@@ -245,8 +288,8 @@ public class DBAccess {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             Properties prop = new Properties();
-            prop.put("user", "java");
-            prop.put("password", "admin");
+            prop.put("user", "root");
+            prop.put("password", "16FishFillet");
             prop.put("serverTimezone", "UTC");
             prop.put("allowMultiQueries", true);
             conn = DriverManager.getConnection(url, prop);

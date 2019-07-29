@@ -78,7 +78,21 @@
         </Tab>
         <Tab text="Evaluate">
           <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ComboBox id="comboBox" fx:id="evalDatasetComboBox" layoutX="32.0" layoutY="27.0" onAction="#handleEvalDatasetCombo" prefHeight="21.0" prefWidth="130.0" promptText="Select Dataset">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList" />
+                           </items>
+                        </ComboBox>
+                        <TableView fx:id="evalTable" layoutX="32.0" layoutY="74.0" prefHeight="472.0" prefWidth="330.0" visible="false">
+                          <columns>
+                            <TableColumn fx:id="modelColumn" prefWidth="150.0" text="Model Name" />
+                            <TableColumn fx:id="accColumn" minWidth="0.0" prefWidth="88.0" text="Accuracy" />
+                              <TableColumn fx:id="lossColumn" minWidth="0.0" prefWidth="90.0" text="Loss" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
           </content>
         </Tab>
         <Tab text="Stats">

@@ -7,6 +7,9 @@ import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -35,6 +38,21 @@ public class Controller {
     private ComboBox<String> datasetComboBox;
 
     @FXML
+    private ComboBox<String> evalDatasetComboBox;
+
+    @FXML
+    private TableView evalTable;
+
+    @FXML
+    private TableColumn modelColumn;
+
+    @FXML
+    private TableColumn accColumn;
+
+    @FXML
+    private TableColumn lossColumn;
+
+    @FXML
     private ComboBox<String> statsDatasetComboBox;
 
     @FXML
@@ -48,6 +66,7 @@ public class Controller {
 
     private String currentModelName;
     private String currentDatasetName;
+    private String evalDatasetName;
     private String statsDatasetName;
     private String statsModelName;
 
@@ -64,6 +83,7 @@ public class Controller {
 
         List<String> datasetNames = DBAccess.SelectDatasetNames();
         datasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
+        evalDatasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
         statsDatasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
 
         datasetComboBox.valueProperty()
@@ -75,10 +95,16 @@ public class Controller {
                     List<String> modelData = DBAccess.CNNInfoByName(currentModelName);
                     modelDataListView.getItems().addAll(modelData);
                 });
+        evalDatasetComboBox.valueProperty()
+                .addListener((ov, s, tl) -> evalDatasetName = tl);
         statsDatasetComboBox.valueProperty()
                 .addListener((ov, s, tl) -> statsDatasetName = tl);
         statsModelComboBox.valueProperty()
                 .addListener((ov, s, tl) -> statsModelName = tl);
+
+        modelColumn.setCellValueFactory(new PropertyValueFactory<>("modelName"));
+        accColumn.setCellValueFactory(new PropertyValueFactory<>("acc"));
+        lossColumn.setCellValueFactory(new PropertyValueFactory<>("loss"));
     }
 
 
@@ -113,7 +139,6 @@ public class Controller {
 
         List<List<Number>> lists = DBAccess.SelectLossAccuracy(statsDatasetName, statsModelName);
         for(int i = 0; i < lists.get(0).size(); i++) {
-            System.out.println(lists.get(1).get(i));
             lossSeries.getData().add(new Data(lists.get(0).get(i), lists.get(1).get(i)));
             accSeries.getData().add(new Data(lists.get(0).get(i), lists.get(2).get(i)));
         }
@@ -130,4 +155,13 @@ public class Controller {
         lineChartList.add(statsRef);
     }
 
+    @FXML
+    private void handleEvalDatasetCombo(ActionEvent event) {
+        evalTable.getItems().clear();
+
+        List<EvaluatedModel> models = DBAccess.SelectEval(evalDatasetName);
+        for(EvaluatedModel model : models)
+            evalTable.getItems().add(model);
+        evalTable.setVisible(true);
+    }
 }
