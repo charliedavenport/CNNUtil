@@ -58,7 +58,10 @@ public class Main extends Application {
                 String username = input.nextLine().trim();
                 System.out.println("Enter Desired Password");
                 String password = input.nextLine().trim();
-                System.out.println("Thanks. You can sign in now.");
+                if(DBInsert.insertUser(username,hashPWD(password,salt))){
+                    System.out.println("Thanks. You can sign in now.");
+                }
+
             }
             else if(cur_choice.equals("S")){
                 System.out.println("Enter Account Username");
