@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9cd91991-2cf6-4729-9ec5-e31db5ab852d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/ipynb/keras_MNIST.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CNNUtil/ipynb/keras_MNIST.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sql/insert_cnn.sql" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CNNUtil/sql/insert_cnn.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ipynb/.ipynb_checkpoints/TrainModels-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/ipynb/.ipynb_checkpoints/TrainModels-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ipynb/TrainModels.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/ipynb/TrainModels.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/DBAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DBAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sql/insert_cnn.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/insert_cnn.sql" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +18,7 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.40465873">
+    <splitter split-orientation="horizontal" split-proportion="0.5195016">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -56,8 +54,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="113">
-                  <caret line="114" column="67" lean-forward="true" selection-start-line="114" selection-start-column="67" selection-end-line="114" selection-end-column="67" />
+                <state relative-caret-position="1015">
+                  <caret line="140" column="36" lean-forward="true" selection-start-line="140" selection-start-column="36" selection-end-line="140" selection-end-column="36" />
                 </state>
               </provider>
             </entry>
@@ -69,8 +67,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="366">
-                  <caret line="196" column="33" lean-forward="true" selection-start-line="196" selection-start-column="33" selection-end-line="196" selection-end-column="33" />
+                <state relative-caret-position="-2601">
+                  <caret line="210" column="37" lean-forward="true" selection-start-line="210" selection-start-column="37" selection-end-line="210" selection-end-column="37" />
                 </state>
               </provider>
             </entry>
@@ -329,7 +327,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564375474904</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="New layer type: &quot;FLATTEN&quot;">
+      <created>1564405344915</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1564405344915</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -345,7 +350,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36555555" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36555555" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -377,7 +382,8 @@
     <MESSAGE value="remove TestQuery.class" />
     <MESSAGE value="Dataset Info in Data Tab" />
     <MESSAGE value="added input, output columns to layer" />
-    <option name="LAST_COMMIT_MESSAGE" value="added input, output columns to layer" />
+    <MESSAGE value="New layer type: &quot;FLATTEN&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="New layer type: &quot;FLATTEN&quot;" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -433,17 +439,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="114" column="67" lean-forward="true" selection-start-line="114" selection-start-column="67" selection-end-line="114" selection-end-column="67" />
+        <state relative-caret-position="-2601">
+          <caret line="210" column="37" lean-forward="true" selection-start-line="210" selection-start-column="37" selection-end-line="210" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="196" column="33" lean-forward="true" selection-start-line="196" selection-start-column="33" selection-end-line="196" selection-end-column="33" />
+        <state relative-caret-position="1015">
+          <caret line="140" column="36" lean-forward="true" selection-start-line="140" selection-start-column="36" selection-end-line="140" selection-end-column="36" />
         </state>
       </provider>
     </entry>

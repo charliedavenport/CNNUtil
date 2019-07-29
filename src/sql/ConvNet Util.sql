@@ -1,6 +1,6 @@
 CREATE TABLE `cnn`
 (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(150),
   `layers` int,
   `trainable_params` int,
@@ -47,7 +47,8 @@ CREATE TABLE `data`
   `id` int NOT NULL,
   `file_path` varchar(150),
   `fold` int,
-  `class` int
+  `class` int,
+  `image` BLOB
 );
 
 CREATE TABLE `hyperParam`
@@ -81,7 +82,7 @@ ALTER TABLE `test` ADD PRIMARY KEY (`cnn_id`, `data_id`);
 
 ALTER TABLE `train` ADD PRIMARY KEY (`cnn_id`, `data_id`);
 
-ALTER TABLE `data` ADD PRIMARY KEY (`dataset`, `file_path`);
+ALTER TABLE `data` ADD PRIMARY KEY (`dataset`, `id`);
 
 ALTER TABLE `train` ADD FOREIGN KEY (`cnn_id`) REFERENCES `cnn` (`id`);
 
