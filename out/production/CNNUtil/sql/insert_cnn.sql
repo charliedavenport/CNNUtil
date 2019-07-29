@@ -19,4 +19,4 @@ VALUES (001, 6,  'DENSE', 1290, null, null, null, null);
 
 #UPDATE cnn SET name = "MNIST_CNN_01" where id=1;
 
-SELECT * FROM cnn JOIN layer;
+SELECT * FROM cnn JOIN layer on cnn.id = layer.cnn_id;
