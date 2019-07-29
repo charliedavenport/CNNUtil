@@ -21,6 +21,12 @@ public class Controller {
     @FXML
     private ComboBox<String> datasetComboBox;
 
+    @FXML
+    private ComboBox<String> statsDatasetComboBox;
+
+    @FXML
+    private ComboBox<String> statsModelComboBox;
+
     private String currentModelName;
     private String currentDatasetName;
 
@@ -32,9 +38,11 @@ public class Controller {
     private void initialize() {
         List<String> modelNames = TestQuery.SelectCnnNames();
         modelComboBox.getItems().setAll(modelNames.toArray(new String[0]));
+        statsModelComboBox.getItems().setAll(modelNames.toArray(new String[0]));
 
         List<String> datasetNames = TestQuery.SelectDatasetNames();
         datasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
+        statsDatasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
 
         datasetComboBox.valueProperty()
                 .addListener((ov, s, t1) -> currentDatasetName = t1);
