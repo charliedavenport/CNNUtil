@@ -25,7 +25,7 @@ public class Controller {
     private ComboBox<String> statsDatasetComboBox;
 
     @FXML
-    private ListView modelListView;
+    private ComboBox<String> statsModelComboBox;
 
     private String currentModelName;
     private String currentDatasetName;
@@ -59,13 +59,9 @@ public class Controller {
 
     @FXML
     private void handleStatDatasetCombo(ActionEvent event) {
-        System.out.println(statsDatasetName);
         List<String> modelNames = TestQuery.SelectCnnNames(statsDatasetName);
-        for(int i = 0; i < modelNames.size(); i++)
-            System.out.println(modelNames.get(i));
-
-        modelListView.getItems().setAll(modelNames.toArray(new String[0]));
-        modelListView.setVisible(true);
+        statsModelComboBox.getItems().setAll(modelNames.toArray(new String[0]));
+        statsModelComboBox.setVisible(true);
     }
 
 

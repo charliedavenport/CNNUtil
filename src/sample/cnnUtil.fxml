@@ -89,7 +89,7 @@
                               <FXCollections fx:factory="observableArrayList" />
                            </items>
                         </ComboBox>
-                        <ListView fx:id="modelListView" layoutX="192.0" layoutY="27.0" prefHeight="60.0" prefWidth="130.0" visible="false" />
+                        <ComboBox fx:id="statsModelComboBox" layoutX="194.0" layoutY="27.0" prefHeight="21.0" prefWidth="130.0" promptText="Select Model" visible="false" />
                      </children></AnchorPane>
           </content>
         </Tab>
