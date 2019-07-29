@@ -120,15 +120,38 @@ public class DBAccess {
         return 0;
     }
 
-    public static List<Blob> datasetIMGsByData(String datasetName,int curClass) {
-        List<Blob> blobs = new ArrayList<>();
+    public static boolean isValidUser(String username, String hashedPWD){
         ResultSet rs;
-        String query1 = "SELECT image FROM dataset JOIN data WHERE name=? and class=?;";
+        String query1 = "SELECT COUNT(username) FROM users WHERE username=? and password=?;";
         try {
             connectToDB();
             PreparedStatement pStmt = conn.prepareStatement(query1);
-            pStmt.setString(1, datasetName);
-            pStmt.setString(2, Integer.toString(curClass));
+            pStmt.setString(1, username);
+            pStmt.setString(2, hashedPWD);
+            pStmt.execute();
+            rs = pStmt.getResultSet();
+            rs.first();
+            int numAccounts = rs.getInt(1);
+            if(numAccounts == 0)
+                return false;
+            else if(numAccounts >= 1)
+                return true;
+
+        }catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+        return false;
+    }
+
+    public static List<Blob> datasetIMGsByData(String datasetName,int curClass) {
+        List<Blob> blobs = new ArrayList<>();
+        ResultSet rs;
+        String query1 = "SELECT image FROM data WHERE dataset=1 and class=?;";
+        try {
+            connectToDB();
+            PreparedStatement pStmt = conn.prepareStatement(query1);
+            //pStmt.setString(1, datasetName);
+            pStmt.setString(1, Integer.toString(curClass));
             pStmt.execute();
             rs = pStmt.getResultSet();
             rs.first();
@@ -144,8 +167,11 @@ public class DBAccess {
             while(rs.next()){
                 allBlobs.add(rs.getBlob(1));
             }
-            for(int i = 0; i<12;i++){
-                blobs.add(allBlobs.get(r.nextInt(rsLen)));
+//            for(int i = 0; i<12;i++){
+//                blobs.add(allBlobs.get(r.nextInt(rsLen)));
+//            }
+            for(int i = 0; i<7;i++){
+                blobs.add(allBlobs.get(i));
             }
             System.out.println(allBlobs.size());
             System.out.println(blobs.size());
