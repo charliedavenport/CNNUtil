@@ -166,6 +166,7 @@ public class DBAccess {
             }
             rs.first();
             do {
+                String type = rs.getString("type");
                 String kernelStr = "(" + rs.getInt("kernel_x") + ","
                         + rs.getInt("kernel_y") + ")";
                 String strideStr = "(" + rs.getInt("stride_x") + ","
@@ -176,15 +177,26 @@ public class DBAccess {
                 String outputStr = "(" + rs.getInt("output_x") + ","
                         + rs.getInt("output_y") + ","
                         + rs.getInt("output_z") + ")";
-                Layer tmp = new Layer(cnnId,
-                        rs.getInt("depth"),
-                        rs.getString("type"),
-                        rs.getInt("params"),
-                        rs.getInt("filters"),
-                        kernelStr,
-                        strideStr,
-                        inputStr,
-                        outputStr);
+                Layer tmp = (type.equals("DENSE"))
+                        ? new Layer(cnnId,
+                            rs.getInt("depth"),
+                            rs.getString("type"),
+                            rs.getInt("params"),
+                            rs.getInt("filters"),
+                            null,
+                            null,
+                            //String.valueOf(rs.getInt("input_x")),
+                            inputStr,
+                            String.valueOf(rs.getInt("output_x")))
+                        : new Layer(cnnId,
+                            rs.getInt("depth"),
+                            rs.getString("type"),
+                            rs.getInt("params"),
+                            rs.getInt("filters"),
+                            kernelStr,
+                            strideStr,
+                            inputStr,
+                            outputStr);
                 layerInfo.add(tmp);
             } while (rs.next());
         } catch (SQLException e) {
