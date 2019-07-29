@@ -175,7 +175,7 @@ public class DBAccess {
             stmt.setString(1, dataset);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
-            // check for null ResultSet
+            // check for empty ResultSet
             if (!rs.next()){
                 //System.out.println("empty rs");
                 return names;
