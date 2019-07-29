@@ -1,9 +1,2 @@
 
-out/production/CNNUtil/sql/insert_cnn.sql
-out/production/CNNUtil/sql/insert_cnn.sql
-out/production/CNNUtil/sql/insert_cnn.sql
-out/production/CNNUtil/sql/ConvNet Util.sql
-out/production/CNNUtil/sample/TestQuery.class
-out/production/CNNUtil/sample/DBInsert.class
-out/production/CNNUtil/module-info.class
-out/production/CNNUtil/sql/ConvNet Util.sql
+out/*
