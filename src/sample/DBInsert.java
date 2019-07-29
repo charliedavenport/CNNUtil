@@ -243,10 +243,22 @@ public class DBInsert {
         return true;
     }
 
-    //TODO
-    private static boolean insertUser(String username, String hashedPWD){
+    public static boolean insertUser(String username, String hashedPWD){
+        String query = "insert into users values (?,?)";
+        try {
+            connectToDB();
+            PreparedStatement pStmt = conn.prepareStatement(query);
+            pStmt.setString(1, username);
+            pStmt.setString(2, hashedPWD);
+            pStmt.executeUpdate();
+            return true;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
+
     /**
      * Connect to mysql database.
      * @author Charles Davenport
