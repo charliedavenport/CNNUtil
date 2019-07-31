@@ -132,6 +132,7 @@ public class Controller {
 
         List<String> datasetNames = DBAccess.SelectDatasetNames();
         datasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
+        //System.out.println(datasetNames);
         evalDatasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
         statsDatasetComboBox.getItems().setAll(datasetNames.toArray(new String[0]));
 

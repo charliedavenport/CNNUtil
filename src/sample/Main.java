@@ -101,6 +101,7 @@ public class Main extends Application {
             }
             System.out.println("Type 'A' to make a new account or 'S' to sign in.");
             //input = new Scanner(System.in);
+            break;
         }
         Parent root = FXMLLoader.load(getClass().getResource("cnnUtil.fxml"));
         primaryStage.setTitle("CNN Util");

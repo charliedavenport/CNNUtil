@@ -120,7 +120,11 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                         </GridPane>
-                        <ComboBox fx:id="datasetClassComboBox" layoutX="479.0" layoutY="42.0" prefWidth="150.0" promptText="Select Class" />
+                        <ComboBox fx:id="datasetClassComboBox" layoutX="479.0" layoutY="42.0" prefWidth="150.0" promptText="Select Class">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList" />
+                            </items>
+                        </ComboBox>
               </children>
             </AnchorPane>
           </content>
