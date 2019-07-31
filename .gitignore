@@ -1,2 +1,7 @@
 
 out/*
+.idea/libraries/lib.xml
+.idea/libraries/mysql_connector_java_8_0.xml
+.idea/libraries/mysql_connector_java_8_0_16.xml
+.idea/workspace.xml
+CNNUtil.iml
