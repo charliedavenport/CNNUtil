@@ -21,17 +21,38 @@ import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Optional;
 
-
+/**
+ * Class for running the application
+ *
+ * @author Stone Daniel, Charles Davenport
+ */
 public class Main extends Application {
 
     private static final SecureRandom RAND = new SecureRandom();
 
+    /**
+     * Gets the salt for hashing passwords
+     * @return salt for hashing passwords
+     * @throws NoSuchAlgorithmException
+     *
+     * @author Stone Daniel
+     */
     private static byte[] getSalt() throws NoSuchAlgorithmException
     {
         byte[] salt = "$2b$10$X4kv7j5ZcG39WgogSl16au".getBytes();
         return salt;
     }
 
+    /**
+     * Hashes a password based on a salt
+     * @param pass password to be hashed
+     * @param salt salt for hashing password
+     * @return hashed password
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     *
+     * @author Stone Daniel
+     */
     public String hashPWD(String pass, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         KeySpec spec = new PBEKeySpec("password".toCharArray(), salt, 65536, 128);
@@ -41,6 +62,13 @@ public class Main extends Application {
         return enc.encodeToString(hash);
     }
 
+    /**
+     * Handles user login and gui construction from fxml and Controller
+     * @param primaryStage stage on which to construct gui
+     * @throws Exception when something unexpected happens
+     *
+     * @author Stone Daniel, Charles Davenport
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         byte[] salt = getSalt();
@@ -81,7 +109,12 @@ public class Main extends Application {
     }
 
 
-
+    /**
+     * Main method that launches program
+     * @param args user input arguments from command line
+     *
+     * @author Charles Davenport
+     */
     public static void main(String[] args) {
 
         launch(args);

@@ -12,7 +12,7 @@ import java.util.Scanner;
 /**
  * Class for inserting images, csv data into the mysql db
  *
- * @author Charles Davenport
+ * @author Stone Daniel, Charles Davenport
  */
 public class DBInsert {
 
@@ -50,11 +50,11 @@ public class DBInsert {
      * I wrote this utility function, because I initially inserted all
      * the images to the DB without setting the class properly. Now the records
      * have to be updated ¯\_(ツ)_/¯
-     *
-     * @author Charles Davenport
      * @param classFile - path to csv file
      * @param dataset - dataset name
      * @return true if successful, false otherwise
+     *
+     * @author Charles Davenport
      */
     private static boolean updateDataClasses(String classFile, String dataset) {
         final String UPDATE_CLASSES = "UPDATE data SET class=? WHERE dataset=1 AND id=?";
@@ -92,11 +92,12 @@ public class DBInsert {
      * Static method for inserting data (images) into DB.
      * Dataset must already exist in DB.
      *
-     * @author Charles Davenport
      * @param dirPath - directory to load images from
      * @param dataset - name of dataset we're adding to
      * @param folds - how many folds to split data into
      * @return true if successful, false if not
+     *
+     * @author Charles Davenport
      */
     private static boolean insertDataFromDir(String dirPath, String classFile, String dataset, int folds) {
         final String INSERT_QUERY = "INSERT INTO data VALUES (?, ?, ?, ?, ?, ?)";
@@ -169,11 +170,12 @@ public class DBInsert {
     /**
      * Inserts data into the training table from a csv text file.
      *
-     * @author Charles Davenport
      * @param csvPath - path to csv file
      * @param dataset - name of dataset used in training
      * @param modelName - name of CNN model, must match a record in cnn table
      * @return true if successful, false otherwise.
+     *
+     * @author Charles Davenport
      */
     private static boolean insertTrain(String csvPath, String dataset, String modelName) {
         final String SELECT_DATA_ID = "SELECT id FROM dataset WHERE name=?";
@@ -243,6 +245,14 @@ public class DBInsert {
         return true;
     }
 
+    /**
+     * Stores a new user's login information
+     * @param username username to be stored for future login
+     * @param hashedPWD hashed password to be stored for future login
+     * @return true if user successfully inserted, false otherwise
+     *
+     * @author Stone Daniel
+     */
     public static boolean insertUser(String username, String hashedPWD){
         String query = "insert into users values (?,?)";
         try {
@@ -261,6 +271,7 @@ public class DBInsert {
 
     /**
      * Connect to mysql database.
+     *
      * @author Charles Davenport
      */
     private static void connectToDB() {
@@ -268,8 +279,8 @@ public class DBInsert {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             Properties prop = new Properties();
-            prop.put("user", "root");
-            prop.put("password", "16FishFillet");
+            prop.put("user", "java");
+            prop.put("password", "admin");
             prop.put("serverTimezone", "UTC");
             prop.put("allowMultiQueries", true);
             conn = DriverManager.getConnection(url, prop);

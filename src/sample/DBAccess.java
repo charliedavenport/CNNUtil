@@ -224,11 +224,10 @@ public class DBAccess {
     }
     /**
      * Get a List of Strings to put in Model ListView
-     *
-     * @author Stone Daniel
-     * @author Charles Davenport
      * @param name - model name to match in DB
      * @return List of Strings to be inserted in fxml ListView
+     *
+     * @author Stone Daniel, Charles Davenport
      */
     public static List<String> CNNInfoByName(String name) {
         List<String> cnnInfo = new ArrayList<>();
@@ -260,6 +259,13 @@ public class DBAccess {
         return cnnInfo;
     }//CNNInfoByName()
 
+    /**
+     * Gets information on the layers of a given cnn
+     * @param cnnName name of the given cnn
+     * @return list of Layers of a given cnn
+     *
+     * @author Charles Davenport
+     */
     public static List<Layer> layerInfoByCNN(String cnnName) {
         List<Layer> layerInfo = new ArrayList<>();
         ResultSet rs;
@@ -329,9 +335,11 @@ public class DBAccess {
 
 
     /**
+     * Gets list of names of all cnns in DB that have trained on a given dataset
      * @param dataset   the dataset on which cnns should have been trained
+     * @return - List of names of all cnns in DB that have trained on dataset
+     *
      * @author Quinn Wyner
-     * @return - List of names of all cnn's in DB that have trained on dataset
      */
     public static List<String> SelectCnnNames(String dataset) {
         final String query = "SELECT DISTINCT C.name\n" +
@@ -370,9 +378,11 @@ public class DBAccess {
     }
 
     /**
+     * Gets a validation information on models trained on a given dataset
      * @param dataset   the dataset on which cnns should have been evaluated
-     * @author Quinn Wyner
      * @return - List of EvaluatedModels evaluated on dataset
+     *
+     * @author Quinn Wyner
      */
     public static List<EvaluatedModel> SelectEval(String dataset) {
         final String query = "SELECT C.name, T.acc, T.loss\n" +
@@ -412,10 +422,12 @@ public class DBAccess {
     }
 
     /**
+     * Gets training information on a model trained on a given dataset
      * @param dataset   the dataset on which cnn's should have been trained
      * @param cnn       the cnn whose training data should be loaded
-     * @author Quinn Wyner
      * @return - lists of epochs, losses, and accuracies for training cnn on dataset
+     *
+     * @author Quinn Wyner
      */
     public static List<List<Number>> SelectLossAccuracy(String dataset, String cnn) {
         final String query = "SELECT T.epoch, T.loss, T.acc\n" +
@@ -458,6 +470,7 @@ public class DBAccess {
 
     /**
      * Connect to mysql database.
+     *
      * @author Charles Davenport
      */
     private static void connectToDB() {
@@ -465,8 +478,8 @@ public class DBAccess {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             Properties prop = new Properties();
-            prop.put("user", "root");
-            prop.put("password", "16FishFillet");
+            prop.put("user", "java");
+            prop.put("password", "admin");
             prop.put("serverTimezone", "UTC");
             prop.put("allowMultiQueries", true);
             conn = DriverManager.getConnection(url, prop);
