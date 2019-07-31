@@ -179,15 +179,23 @@ public class DBAccess {
      *
      * @author Stone Daniel
      */
-    public static List<Blob> datasetIMGsByData(String datasetName, String curClass) {
+    public static List<Blob> datasetIMGsByData(String datasetName, int curClass) {
         List<Blob> blobs = new ArrayList<>();
         ResultSet rs;
-        String query1 = "SELECT image FROM data WHERE dataset=1 and class=?;";
+        String query1 = "SELECT D.image\n" +
+                "FROM (SELECT E.image, E.dataset\n" +
+                "\t  FROM data E\n" +
+                "      WHERE E.class = ?) D,\n" +
+                "\t (SELECT S.id\n" +
+                "      FROM dataset S\n" +
+                "      WHERE S.name = ?) T\n" +
+                "WHERE D.dataset = T.id;";
         try {
             connectToDB();
             PreparedStatement pStmt = conn.prepareStatement(query1);
             //pStmt.setString(1, datasetName);
-            pStmt.setString(1, curClass);
+            pStmt.setInt(1, curClass);
+            pStmt.setString(2, datasetName);
             pStmt.execute();
             rs = pStmt.getResultSet();
             rs.first();

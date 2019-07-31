@@ -107,7 +107,7 @@ public class Controller {
     private String statsDatasetName;
     private String statsModelName;
 
-    private ArrayList<refHolder> lineChartList = new ArrayList<>();
+    private ArrayList<refHolder> lineChartList;
 
     /**
      * Default constructor
@@ -152,7 +152,7 @@ public class Controller {
                     List<Blob> blobs = null;
                     datasetGridPane.getChildren().clear();
                     try {
-                        blobs = DBAccess.datasetIMGsByData(currentDatasetName, t1);
+                        blobs = DBAccess.datasetIMGsByData(currentDatasetName, Integer.parseInt(t1));
                     } catch (NumberFormatException nfe){}
                     if(blobs == null)
                         return;
@@ -203,6 +203,7 @@ public class Controller {
      */
     @FXML
     private void handleStatDatasetCombo(ActionEvent event) {
+        lineChartList = new ArrayList<>();
         List<String> modelNames = DBAccess.SelectCnnNames(statsDatasetName);
         statsModelComboBox.getItems().setAll(modelNames.toArray(new String[0]));
         statsModelComboBox.setVisible(true);
