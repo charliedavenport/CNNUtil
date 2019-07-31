@@ -31,7 +31,6 @@ public class DBAccess {
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
             rs.first();
-            System.out.println(rs.getString(1));
             do {
                 names.add(rs.getString(1));
             } while (rs.next());
@@ -102,9 +101,16 @@ public class DBAccess {
         return datasetInfo;
     }
 
-    public static int datasetClassesByName(String name){
+    public static List<String> datasetClassesByName(String name){
         ResultSet rs;
-        String query1 = "SELECT classes FROM dataset WHERE name=?;";
+        String query1 = "SELECT DISTINCT D.class\n" +
+                "FROM data D,\n" +
+                "\t (SELECT S.id\n" +
+                "      FROM dataset S\n" +
+                "\t  WHERE S.name = ?) T\n" +
+                "WHERE D.dataset = T.id\n" +
+                "ORDER BY D.class";
+        List<String> names = new ArrayList<>();
         try {
             connectToDB();
             PreparedStatement pStmt = conn.prepareStatement(query1);
@@ -113,11 +119,14 @@ public class DBAccess {
             rs = pStmt.getResultSet();
             rs.first();
 
-            return rs.getInt("classes");
+            do {
+                names.add(rs.getString(1));
+            } while (rs.next());
+
+            return names;
         } catch (SQLException ex) {
-            System.out.println("SQLException: " + ex.getMessage());
+            return names;
         }
-        return 0;
     }
 
     public static boolean isValidUser(String username, String hashedPWD){
@@ -167,14 +176,10 @@ public class DBAccess {
             while(rs.next()){
                 allBlobs.add(rs.getBlob(1));
             }
-//            for(int i = 0; i<12;i++){
-//                blobs.add(allBlobs.get(r.nextInt(rsLen)));
-//            }
-            for(int i = 0; i<7;i++){
-                blobs.add(allBlobs.get(i));
+            for(int i = 0; i<12;i++){
+                blobs.add(allBlobs.get(r.nextInt(rsLen)));
             }
-            System.out.println(allBlobs.size());
-            System.out.println(blobs.size());
+
             return blobs;
 
         } catch (SQLException ex) {
@@ -425,8 +430,8 @@ public class DBAccess {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             Properties prop = new Properties();
-            prop.put("user", "java");
-            prop.put("password", "admin");
+            prop.put("user", "root");
+            prop.put("password", "16FishFillet");
             prop.put("serverTimezone", "UTC");
             prop.put("allowMultiQueries", true);
             conn = DriverManager.getConnection(url, prop);

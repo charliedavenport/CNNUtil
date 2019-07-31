@@ -28,9 +28,7 @@ public class Main extends Application {
 
     private static byte[] getSalt() throws NoSuchAlgorithmException
     {
-        byte[] salt = new byte[16];
-        RAND.nextBytes(salt);
-
+        byte[] salt = "$2b$10$X4kv7j5ZcG39WgogSl16au".getBytes();
         return salt;
     }
 
@@ -40,8 +38,6 @@ public class Main extends Application {
         SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
         byte[] hash = f.generateSecret(spec).getEncoded();
         Base64.Encoder enc = Base64.getEncoder();
-        System.out.printf("salt: %s%n", enc.encodeToString(salt));
-        System.out.printf("hash: %s%n", enc.encodeToString(hash));
         return enc.encodeToString(hash);
     }
 
@@ -73,7 +69,7 @@ public class Main extends Application {
                     break;
                 }
                 else
-                    System.out.println("No User matces those credentials");
+                    System.out.println("No User matches those credentials");
             }
             System.out.println("Type 'A' to make a new account or 'S' to sign in.");
             //input = new Scanner(System.in);

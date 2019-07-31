@@ -116,25 +116,25 @@ public class Controller {
                     datasetListView.getItems().clear();
                     List<String> datasetInfo = DBAccess.datasetInfoByName(currentDatasetName);
                     datasetListView.getItems().addAll(datasetInfo);
-                    int numClasses = DBAccess.datasetClassesByName(currentDatasetName);
-                    for(int i = 1; i<=numClasses;i++){
-                        datasetClassComboBox.getItems().add("Class " + Integer.toString(i));
+                    List<String> classNames = DBAccess.datasetClassesByName(currentDatasetName);
+                    datasetClassComboBox.getItems().clear();
+                    for(String name : classNames){
+                        datasetClassComboBox.getItems().add(name);
                     }
                 });
         datasetClassComboBox.valueProperty()
                 .addListener((ov, s, t1) -> {
-                    currentDatasetClassNumber = (Integer.parseInt(t1.replace("Class ", "")));
-                    List<Blob> blobs = DBAccess.datasetIMGsByData(currentDatasetName,currentDatasetClassNumber);
+                    List<Blob> blobs = null;
+                    datasetGridPane.getChildren().clear();
+                    try {
+                        blobs = DBAccess.datasetIMGsByData(currentDatasetName, Integer.parseInt(t1));
+                    } catch (NumberFormatException nfe){}
                     if(blobs == null)
                         return;
-                    List<ImageView> converted = new ArrayList<>();
-
                     try {
-                        int curBlob = 0;
                         for(int j = 0; j < 4; j++) {
                             for (int k = 0; k < 3; k++) {
                                 InputStream in = blobs.get(k+(j*3)).getBinaryStream();
-                                System.out.println(blobs.get(k+(j*3)));
                                 Image img = new Image(in);
                                 datasetGridPane.add(new ImageView(img), k, j);
                             }

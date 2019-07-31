@@ -268,8 +268,8 @@ public class DBInsert {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             Properties prop = new Properties();
-            prop.put("user", "java");
-            prop.put("password", "admin");
+            prop.put("user", "root");
+            prop.put("password", "16FishFillet");
             prop.put("serverTimezone", "UTC");
             prop.put("allowMultiQueries", true);
             conn = DriverManager.getConnection(url, prop);
