@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cd91991-2cf6-4729-9ec5-e31db5ab852d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sample/Layer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CNNUtil/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sample/cnnUtil.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CNNUtil/sample/cnnUtil.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CNNUtil/sql/insert_cnn.sql" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CNNUtil/sql/insert_cnn.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/DBAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DBAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/cnnUtil.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/cnnUtil.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sql/insert_cnn.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/insert_cnn.sql" afterDir="false" />
-    </list>
+    <list default="true" id="9cd91991-2cf6-4729-9ec5-e31db5ab852d" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,9 +13,9 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5292524">
+    <splitter split-orientation="horizontal" split-proportion="0.56219804">
       <split-first>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
               <provider selected="true" editor-type-id="text-editor">
@@ -38,7 +28,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/sample/DBInsert.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="22">
+                <state relative-caret-position="4488">
                   <caret line="211" column="23" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="23" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -50,28 +40,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/sample/Layer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="378">
-                  <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-                  <folding>
-                    <element signature="e#959#960#0" expanded="true" />
-                    <element signature="e#988#989#0" expanded="true" />
-                    <element signature="e#1017#1018#0" expanded="true" />
-                    <element signature="e#1045#1046#0" expanded="true" />
-                    <element signature="e#1076#1077#0" expanded="true" />
-                    <element signature="e#1103#1104#0" expanded="true" />
-                    <element signature="e#1137#1138#0" expanded="true" />
-                    <element signature="e#1166#1167#0" expanded="true" />
-                    <element signature="e#1201#1202#0" expanded="true" />
-                    <element signature="e#1231#1232#0" expanded="true" />
-                    <element signature="e#1661#1662#0" expanded="true" />
-                    <element signature="e#1690#1691#0" expanded="true" />
-                    <element signature="e#1332#1333#0" expanded="true" />
-                    <element signature="e#1361#1362#0" expanded="true" />
-                    <element signature="e#1401#1402#0" expanded="true" />
-                    <element signature="e#1434#1435#0" expanded="true" />
-                    <element signature="e#1475#1476#0" expanded="true" />
-                    <element signature="e#1509#1510#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="550">
+                  <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -79,11 +49,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="164">
-                  <caret line="75" column="60" selection-start-line="75" selection-start-column="60" selection-end-line="75" selection-end-column="60" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
+                <state relative-caret-position="253">
+                  <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
                 </state>
               </provider>
             </entry>
@@ -91,24 +58,27 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="510">
-                  <caret line="165" column="13" selection-start-line="165" selection-start-column="13" selection-end-line="165" selection-end-column="13" />
+                <state relative-caret-position="94">
+                  <caret line="363" column="39" selection-start-line="363" selection-start-column="39" selection-end-line="363" selection-end-column="39" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/sample/cnnUtil.fxml">
+              <provider editor-type-id="JavaFX-Scene-Builder" />
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="466">
-                  <caret line="58" column="38" lean-forward="true" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
+                  <caret line="87" column="26" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="26" />
                 </state>
               </provider>
-              <provider editor-type-id="JavaFX-Scene-Builder" />
             </entry>
           </file>
         </leaf>
@@ -154,8 +124,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -172,6 +142,13 @@
               <item name="CNNUtil" type="b2602c69:ProjectViewProjectNode" />
               <item name="CNNUtil" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CNNUtil" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CNNUtil" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -355,14 +332,34 @@
       <option name="project" value="LOCAL" />
       <updated>1564375474904</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="New layer type: &quot;FLATTEN&quot;">
+      <created>1564405344915</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1564405344915</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added new model Data">
+      <created>1564414245865</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1564414245865</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update workspace.xml">
+      <created>1564415558454</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1564415558454</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.015991472" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11727079" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -371,7 +368,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20222223" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32333332" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -403,7 +400,10 @@
     <MESSAGE value="remove TestQuery.class" />
     <MESSAGE value="Dataset Info in Data Tab" />
     <MESSAGE value="added input, output columns to layer" />
-    <option name="LAST_COMMIT_MESSAGE" value="added input, output columns to layer" />
+    <MESSAGE value="New layer type: &quot;FLATTEN&quot;" />
+    <MESSAGE value="Added new model Data" />
+    <MESSAGE value="update workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="update workspace.xml" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -436,7 +436,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DBInsert.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
+        <state relative-caret-position="4488">
           <caret line="211" column="23" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -444,55 +444,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/cnnUtil.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="58" column="38" lean-forward="true" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Layer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-          <folding>
-            <element signature="e#959#960#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
-            <element signature="e#1017#1018#0" expanded="true" />
-            <element signature="e#1045#1046#0" expanded="true" />
-            <element signature="e#1076#1077#0" expanded="true" />
-            <element signature="e#1103#1104#0" expanded="true" />
-            <element signature="e#1137#1138#0" expanded="true" />
-            <element signature="e#1166#1167#0" expanded="true" />
-            <element signature="e#1201#1202#0" expanded="true" />
-            <element signature="e#1231#1232#0" expanded="true" />
-            <element signature="e#1661#1662#0" expanded="true" />
-            <element signature="e#1690#1691#0" expanded="true" />
-            <element signature="e#1332#1333#0" expanded="true" />
-            <element signature="e#1361#1362#0" expanded="true" />
-            <element signature="e#1401#1402#0" expanded="true" />
-            <element signature="e#1434#1435#0" expanded="true" />
-            <element signature="e#1475#1476#0" expanded="true" />
-            <element signature="e#1509#1510#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="550">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/cnnUtil.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="75" column="60" selection-start-line="75" selection-start-column="60" selection-end-line="75" selection-end-column="60" />
+        <state relative-caret-position="466">
+          <caret line="87" column="26" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="363" column="39" selection-start-line="363" selection-start-column="39" selection-end-line="363" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/DBAccess.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="165" column="13" selection-start-line="165" selection-start-column="13" selection-end-line="165" selection-end-column="13" />
+        <state relative-caret-position="253">
+          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
         </state>
       </provider>
     </entry>
