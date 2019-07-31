@@ -8,7 +8,7 @@ import java.util.Random;
 
 /**
  * Class containing static methods for querying the DataBase
- * @author Charles Davenport
+ * @author Stone Daniel, Charles Davenport, Quinn Wyner
  */
 public class DBAccess {
 
@@ -18,8 +18,10 @@ public class DBAccess {
     private static final String cnnSelectQuery = "SELECT * FROM cnn";
 
     /**
-     * @author Charles Davenport
+     * Returns list of names of all cnn's in DB
      * @return - List of names of all cnn's in DB
+     *
+     * @author Charles Davenport
      */
     public static List<String> SelectCnnNames() {
         final String query = "SELECT name FROM cnn";
@@ -43,8 +45,10 @@ public class DBAccess {
     }
 
     /**
-     * @author Charles Davenport
+     * Returns list of names of all datasets in DB
      * @return - List of names of all datasets in DB
+     *
+     * @author Charles Davenport
      */
     public static List<String> SelectDatasetNames() {
         final String query = "SELECT name FROM dataset";
@@ -70,10 +74,10 @@ public class DBAccess {
 
     /**
      * Get a List of Strings to put in Dataset ListView
-     *
-     * @author Charles Davenport
      * @param name - name of dataset
      * @return List of Strings describing the dataset
+     *
+     * @author Charles Davenport
      */
     public static List<String> datasetInfoByName(String name) {
         List<String> datasetInfo = new ArrayList<>();
@@ -101,6 +105,13 @@ public class DBAccess {
         return datasetInfo;
     }
 
+    /**
+     * Gets list of classes of a given dataset
+     * @param name name of the dataset
+     * @return list of classes of a given dataset
+     *
+     * @author Stone Daniel
+     */
     public static List<String> datasetClassesByName(String name){
         ResultSet rs;
         String query1 = "SELECT DISTINCT D.class\n" +
@@ -129,6 +140,14 @@ public class DBAccess {
         }
     }
 
+    /**
+     * Determines validity of a user login
+     * @param username username given in login attempt
+     * @param hashedPWD password that has been hashed during login attempt
+     * @return true if login valid, false otherwise
+     *
+     * @author Stone Daniel
+     */
     public static boolean isValidUser(String username, String hashedPWD){
         ResultSet rs;
         String query1 = "SELECT COUNT(username) FROM users WHERE username=? and password=?;";
@@ -152,7 +171,15 @@ public class DBAccess {
         return false;
     }
 
-    public static List<Blob> datasetIMGsByData(String datasetName,int curClass) {
+    /**
+     * Gets images from a given class and dataset
+     * @param datasetName name of the dataset
+     * @param curClass class label
+     * @return 12 random images from the given class
+     *
+     * @author Stone Daniel
+     */
+    public static List<Blob> datasetIMGsByData(String datasetName, String curClass) {
         List<Blob> blobs = new ArrayList<>();
         ResultSet rs;
         String query1 = "SELECT image FROM data WHERE dataset=1 and class=?;";
@@ -160,7 +187,7 @@ public class DBAccess {
             connectToDB();
             PreparedStatement pStmt = conn.prepareStatement(query1);
             //pStmt.setString(1, datasetName);
-            pStmt.setString(1, Integer.toString(curClass));
+            pStmt.setString(1, curClass);
             pStmt.execute();
             rs = pStmt.getResultSet();
             rs.first();

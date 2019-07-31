@@ -17,13 +17,29 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Handles fxml injection
+ *
+ * @author Stone Daniel, Charles Davenport, Quinn Wyner
+ */
 public class Controller {
 
+    /**
+     * A trained model
+     *
+     * @author Quinn Wyner
+     */
     private class refHolder {
         public String modelName;
         public Series loss;
         public Series acc;
 
+        /**
+         * Constructor for a refHolder
+         * @param _modelName name of the trained model
+         * @param _loss loss series of the trained model
+         * @param _acc accuracy series of the trained model
+         */
         public refHolder(String _modelName, Series _loss, Series _acc) {
             modelName = _modelName;
             loss = _loss;
@@ -87,18 +103,27 @@ public class Controller {
 
     private String currentModelName;
     private String currentDatasetName;
-    private int currentDatasetClassNumber;
     private String evalDatasetName;
     private String statsDatasetName;
     private String statsModelName;
 
     private ArrayList<refHolder> lineChartList = new ArrayList<>();
 
+    /**
+     * Default constructor
+     *
+     * @author Charles Davenport
+     */
     public Controller() {
 
     }
 
     @FXML
+    /**
+     * Constructs initial states of gui elements
+     *
+     * @author Stone Daniel, Charles Davenport, Quinn Wyner
+     */
     private void initialize() {
         List<String> modelNames = DBAccess.SelectCnnNames();
         modelComboBox.getItems().setAll(modelNames.toArray(new String[0]));
@@ -127,7 +152,7 @@ public class Controller {
                     List<Blob> blobs = null;
                     datasetGridPane.getChildren().clear();
                     try {
-                        blobs = DBAccess.datasetIMGsByData(currentDatasetName, Integer.parseInt(t1));
+                        blobs = DBAccess.datasetIMGsByData(currentDatasetName, t1);
                     } catch (NumberFormatException nfe){}
                     if(blobs == null)
                         return;
@@ -169,11 +194,13 @@ public class Controller {
         lossColumn.setCellValueFactory(new PropertyValueFactory<>("loss"));
     }
 
-    @FXML
-    private void handleDatasetGridPane(){
 
-    }
-
+    /**
+     * Handles interaction with the Stats tab's dataset selector
+     * @param event event requiring handling
+     *
+     * @author Quinn Wyner
+     */
     @FXML
     private void handleStatDatasetCombo(ActionEvent event) {
         List<String> modelNames = DBAccess.SelectCnnNames(statsDatasetName);
@@ -185,6 +212,12 @@ public class Controller {
         accChart.getData().clear();
     }
 
+    /**
+     * Handles interaction with the Stats tab's model selector
+     * @param event event requiring handling
+     *
+     * @author Quinn Wyner
+     */
     @FXML
     private void handleStatModelCombo(ActionEvent event) {
         refHolder statsRef = null;
@@ -220,6 +253,12 @@ public class Controller {
         lineChartList.add(statsRef);
     }
 
+    /**
+     * Handles interaction with Eval tab's dataset selector
+     * @param event event requiring handling
+     *
+     * @author Quinn Wyner
+     */
     @FXML
     private void handleEvalDatasetCombo(ActionEvent event) {
         evalTable.getItems().clear();
