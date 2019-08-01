@@ -101,6 +101,12 @@ public class Controller {
     @FXML
     private Label layerDataLabel;
 
+    @FXML
+    private Button newSampleButton;
+
+    @FXML
+    private Label labelClassName;
+
     private String currentModelName;
     private String currentDatasetName;
     private String evalDatasetName;
@@ -152,14 +158,15 @@ public class Controller {
                 .addListener((ov, s, t1) -> {
                     List<Blob> blobs = null;
                     datasetGridPane.getChildren().clear();
+                    labelClassName.setText(DBAccess.getClassName(currentDatasetName,Integer.parseInt(t1)));
                     try {
                         blobs = DBAccess.datasetIMGsByData(currentDatasetName, Integer.parseInt(t1));
                     } catch (NumberFormatException nfe){}
                     if(blobs == null)
                         return;
                     try {
-                        for(int j = 0; j < 4; j++) {
-                            for (int k = 0; k < 3; k++) {
+                        for(int j = 0; j < 5; j++) {
+                            for (int k = 0; k < 4; k++) {
                                 InputStream in = blobs.get(k+(j*3)).getBinaryStream();
                                 Image img = new Image(in);
                                 datasetGridPane.add(new ImageView(img), k, j);
@@ -270,4 +277,30 @@ public class Controller {
             evalTable.getItems().add(model);
         evalTable.setVisible(true);
     }
+
+    @FXML
+    private void handleNewSampleBtn(ActionEvent event) {
+        List<Blob> blobs = null;
+        datasetGridPane.getChildren().clear();
+        try {
+            blobs = DBAccess.datasetIMGsByData(currentDatasetName, Integer.parseInt(datasetClassComboBox.getValue()));
+        } catch (NumberFormatException nfe){}
+        if(blobs == null)
+            return;
+        try {
+            for(int j = 0; j < 5; j++) {
+                for (int k = 0; k < 4; k++) {
+                    InputStream in = blobs.get(k+(j*3)).getBinaryStream();
+                    Image img = new Image(in);
+                    datasetGridPane.add(new ImageView(img), k, j);
+                }
+            }
+        } catch (SQLException ex){
+
+        }
+
+
+    }
+
+
 }

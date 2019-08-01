@@ -209,7 +209,7 @@ public class DBAccess {
             while(rs.next()){
                 allBlobs.add(rs.getBlob(1));
             }
-            for(int i = 0; i<12;i++){
+            for(int i = 0; i<20;i++){
                 blobs.add(allBlobs.get(r.nextInt(rsLen)));
             }
 
@@ -220,6 +220,45 @@ public class DBAccess {
         }
         return null;
     }
+
+    /**
+     * Get string class name from DB
+     *
+     * @author Charles Davenport
+     * @param datasetName - name of dataset:
+     * @param classNum - int number of class, starting at 0
+     * @return String representing class from dataset
+     */
+    public static String getClassName(String datasetName, int classNum) {
+        String query1 = "SELECT id FROM dataset WHERE name=?";
+        String query2 = "SELECT name FROM class WHERE dataset=? AND classNum=?";
+        String className = "";
+
+        try {
+            connectToDB();
+            PreparedStatement pstmt = conn.prepareStatement(query1);
+            pstmt.setString(1, datasetName);
+            pstmt.execute();
+            ResultSet rs = pstmt.getResultSet();
+            rs.first();
+            int datasetId = rs.getInt("id");
+
+            pstmt = conn.prepareStatement(query2);
+            pstmt.setInt(1, datasetId);
+            pstmt.setInt(2, classNum);
+            pstmt.execute();
+            rs = pstmt.getResultSet();
+            rs.first();
+            className = rs.getString("name");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return className;
+    }
+
+
     /**
      * Get a List of Strings to put in Model ListView
      * @param name - model name to match in DB

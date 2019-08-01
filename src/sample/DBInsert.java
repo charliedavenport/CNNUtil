@@ -19,10 +19,10 @@ public class DBInsert {
     private static Connection conn;
     private static final String url = "jdbc:mysql://localhost:3306/cnn_util";
 
-    private static final String imgDir = "D:\\Github\\ACM_ML\\Spring 2019\\MNIST_img";
-    private static final String classesFilePath = "D:\\Github\\ACM_ML\\Spring 2019\\MNIST_classes.csv";
+    private static final String imgDir = "D:\\cifar_images";
+    private static final String classesFilePath = "D:\\Github\\CNNUtil\\store\\dataset\\CIFAR-10_classes.csv";
     private static final String trainCSVPath = "C:\\Users\\cdave\\IdeaProjects\\CNNUtil\\store\\train\\MNIST_CNN_01_train.csv";
-    private static final String datasetName = "MNIST";
+    private static final String datasetName = "CIFAR";
     private static final String cnnName = "MNIST_CNN_01";
 
 
@@ -32,11 +32,11 @@ public class DBInsert {
     public static void main(String[] args) {
 
         connectToDB();
-        //boolean success = insertDataFromDir(imgDir, classesFilePath, datasetName, 10);
-        //System.out.println(success ? "Successfully inserted images into DB"
-        //        : "Failed to insert images to DB");
+        boolean success = insertDataFromDir(imgDir, classesFilePath, datasetName, 10);
+        System.out.println(success ? "Successfully inserted images into DB"
+                : "Failed to insert images to DB");
 
-        //boolean success = updateDataClasses(classesFilePath, datasetName);
+        //boolean success = updateDataClasses(classesFilePath, datasetName, imgDir);
         //System.out.println(success ? "Successfully updated image classes in DB"
         //        : "Failed to update image classes in DB");
 
@@ -56,32 +56,37 @@ public class DBInsert {
      *
      * @author Charles Davenport
      */
-    private static boolean updateDataClasses(String classFile, String dataset) {
-        final String UPDATE_CLASSES = "UPDATE data SET class=? WHERE dataset=1 AND id=?";
+    private static boolean updateDataClasses(String classFile, String dataset, String dirPath) {
+        final String UPDATE_CLASSES = "UPDATE data SET image=? WHERE dataset=1 AND id=?";
 
         //List<Integer> classValues = new ArrayList<Integer>(70000);
         File cFile = new File(classFile);
+        File dir = new File(dirPath);
+        String [] dirContents = dir.list();
         try {
             Scanner scn = new Scanner(cFile);
             while(scn.hasNextLine()) {
                 String line = scn.nextLine();
-                System.out.println(line);
+                //System.out.println(line);
                 String [] items = line.split(",");
                 int imgId = Integer.parseInt(items[0]);
+                String imgPath = dirPath + "\\" + imgId + ".png";
                 int classNum = Integer.parseInt(items[1]);
 
+                File img_file = new File(imgPath);
+                FileInputStream inputs = new FileInputStream(img_file);
+
+                System.out.println("Image " + imgId + ": class = " + classNum);
+
                 PreparedStatement pstmt = conn.prepareStatement(UPDATE_CLASSES);
-                pstmt.setInt(1, classNum);
-                pstmt.setInt(2,imgId);
+                pstmt.setBinaryStream(1, inputs);
+                pstmt.setInt(2, imgId);
+
                 //System.out.println(pstmt.toString());
                 pstmt.executeUpdate();
             }
         }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
-        catch (SQLException e) {
+        catch (FileNotFoundException | SQLException e) {
             e.printStackTrace();
             return false;
         }
@@ -129,8 +134,8 @@ public class DBInsert {
             String [] dirContents = dir.list();
             // WARNING - this loop can take a long time to complete. Debug with smaller amt of images
             for (int i=0; i<dirContents.length; i++) {
-                //System.out.println(dirContents[i]);
-                String img_path = dirPath + "\\" + dirContents[i];
+                System.out.println(dirContents[i]);
+                String img_path = dirPath + "\\" + i + ".png";
                 // open image file - convert to binary stream
                 File img_file = new File(img_path);
                 FileInputStream inputs = new FileInputStream(img_file);
@@ -151,6 +156,8 @@ public class DBInsert {
                 pstmt.setBinaryStream(6, inputs);
 
                 pstmt.executeUpdate();
+
+                System.out.println(pstmt);
 
 
             }
