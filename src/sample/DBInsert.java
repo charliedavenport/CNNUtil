@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Class for inserting images, csv data into the mysql db
@@ -21,9 +18,10 @@ public class DBInsert {
 
     private static final String imgDir = "D:\\cifar_images";
     private static final String classesFilePath = "D:\\Github\\CNNUtil\\store\\dataset\\CIFAR-10_classes.csv";
-    private static final String trainCSVPath = "C:\\Users\\cdave\\IdeaProjects\\CNNUtil\\store\\train\\MNIST_CNN_01_train.csv";
-    private static final String datasetName = "CIFAR";
-    private static final String cnnName = "MNIST_CNN_01";
+    private static final String trainCSVPath = "D:\\Github\\CNNUtil\\store\\train\\MNIST_CNN_small_2.csv";
+    private static final String datasetName = "MNIST";
+    private static final String cnnName = "MNIST_CNN_small_2";
+    private static final String modelsDir = "D:\\Github\\CNNUtil\\store\\models\\";
 
 
     /* Check the class variables before uncommenting these functions and running.
@@ -32,9 +30,9 @@ public class DBInsert {
     public static void main(String[] args) {
 
         connectToDB();
-        boolean success = insertDataFromDir(imgDir, classesFilePath, datasetName, 10);
-        System.out.println(success ? "Successfully inserted images into DB"
-                : "Failed to insert images to DB");
+        //boolean success = insertDataFromDir(imgDir, classesFilePath, datasetName, 10);
+        //System.out.println(success ? "Successfully inserted images into DB"
+        //        : "Failed to insert images to DB");
 
         //boolean success = updateDataClasses(classesFilePath, datasetName, imgDir);
         //System.out.println(success ? "Successfully updated image classes in DB"
@@ -44,7 +42,81 @@ public class DBInsert {
         //System.out.println(success ? "Successfully inserted train data into DB"
         //                : "Failed to insert train data into DB");
 
+        //insertNewModel(modelsDir, "CIFAR_CNN_small");
+        //insertNewModel(modelsDir, "CIFAR_CNN_small_2");
+
     }
+
+    private static boolean insertNewModel(String dir, String modelName) {
+
+        String modelPath = dir + modelName + ".csv";
+        String layersPath = dir + modelName + "_layers.csv";
+
+        String modelQuery = "INSERT INTO cnn (name, layers, trainable_params, hyper_params, size_kb, file_path, optimizer) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String modelIdQuery = "SELECT id from cnn WHERE name=?";
+        String layerQuery = "INSERT INTO layer (cnn_id, depth, type, params, filters, kernel_x, kernel_y, stride_x, stride_y, input_x, input_y, input_z, output_x, output_y, output_Z) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,)";
+
+        try {
+            connectToDB();
+
+            File modelFile = new File(modelPath);
+            File layersFile = new File(layersPath);
+            Scanner scn = new Scanner(modelFile);
+            String line;
+            if (scn.hasNextLine()) line = scn.nextLine();
+            else return false;
+
+            String [] items = line.split(",");
+            System.out.println(Arrays.toString(items));
+
+            PreparedStatement pstmt = conn.prepareStatement(modelQuery);
+            pstmt.setString(1, modelName);                     // name
+            pstmt.setInt(2, Integer.parseInt(items[2]));      // layers
+            pstmt.setInt(3, Integer.parseInt(items[3]));      // trainable_params
+            pstmt.setInt(4, Integer.parseInt(items[4]));      // hyper_params
+            pstmt.setDouble(5, Double.parseDouble(items[5])); // size_kb
+            pstmt.setString(6, items[6]);                     // file_path
+            pstmt.setString(7, items[7]);                     // optimizer
+            System.out.println(pstmt.toString());
+            pstmt.executeUpdate();
+
+            pstmt = conn.prepareStatement(modelIdQuery);
+            //pstmt.setString(1, modelName);
+            //pstmt.execute();
+            //ResultSet rs = pstmt.getResultSet();
+            //rs.first();
+            //int cnnId = rs.getInt("id");
+
+            //(cnn_id, depth, type, params, filters, kernel_x, kernel_y, stride_x, stride_y, input_x, input_y, input_z, output_x, output_y, output_Z)
+            scn = new Scanner(layersFile);
+            while(scn.hasNextLine()) {
+                line = scn.nextLine();
+                String [] layer_items = line.split(",");
+                //System.out.println(Arrays.toString(layer_items));
+                pstmt = conn.prepareStatement(layerQuery);
+                int depth = Integer.parseInt(layer_items[2]);
+                String type = layer_items[3];
+                int params = Integer.parseInt(layer_items[4]);
+                System.out.println(layer_items[5]);
+                int filters;
+                String input_shape = items[6].replace('(', '\0').replace(')', '\0');
+                System.out.println(input_shape);
+                //pstmt.setInt(1, cnnId);
+
+            }
+
+
+        }
+        catch (SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
+
 
     /**
      * I wrote this utility function, because I initially inserted all
