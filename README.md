@@ -11,6 +11,7 @@ Python notebooks (ipynb) are also used to create, train, and test models.
 ## Changes since 7/29 presentation:
  * Added CIFAR-10 Dataset
  * Added models (cnn, layer, train, test)
+ * Fixed Data tab in GUI
 
 ## How to create database:
 
